@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnit.3.10.1\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.10.1\build\NUnit.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -26,13 +27,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="Neo.SmartContract.Framework">
       <HintPath>..\..\..\..\3rdParty\NEO\neo-devpack-dotnet\Neo.SmartContract.Framework\bin\Debug\netstandard1.6\Neo.SmartContract.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System.Numerics" />
+    <Reference Include="Neo.SmartContract.Framework">
+      <HintPath>..\..\..\3rdParty\NEO\neo-devpack-dotnet\Neo.SmartContract.Framework\bin\Debug\netstandard2.0\Neo.SmartContract.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.3.10.1\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapters\NEO.cs" />
@@ -44,12 +48,12 @@
     <Compile Include="Tests\TestOpNEO.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Adapters\" />
     <Folder Include="Tools\" />
     <Folder Include="Tests\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
