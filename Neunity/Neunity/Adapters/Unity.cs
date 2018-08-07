@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Neunity.Adapters.Unity
 {
-	public static class Conv
+	public static class Op
     {
         public static byte[] JoinTwoByteArray(byte[] ba1, byte[] ba2)
         {
@@ -30,18 +30,18 @@ namespace Neunity.Adapters.Unity
             }
         }
 
-        public static BigInteger ByteArray2BigInteger(byte[] data) => new BigInteger(data);
+        public static BigInteger Bytes2BigInt(byte[] data) => new BigInteger(data);
 
-        public static byte[] BigInteger2ByteArray(BigInteger bigInteger) => bigInteger.ToByteArray();
-
-
-        public static byte[] String2ByteArray(String str) => (str.Length == 0) ? (new byte[1] { 0 }) : Encoding.UTF8.GetBytes(str);
+		public static byte[] BigInt2Bytes(BigInteger bigInteger) => bigInteger.ToByteArray();
 
 
-        public static String ByteArray2String(byte[] data) => (data.Length == 0) ? "\0" : Encoding.UTF8.GetString(data);
+        public static byte[] String2Bytes(String str) => (str.Length == 0) ? (new byte[1] { 0 }) : Encoding.UTF8.GetBytes(str);
 
 
-        public static byte[] SubByteArray(byte[] data, int start, int length)
+        public static String Bytes2String(byte[] data) => (data.Length == 0) ? "\0" : Encoding.UTF8.GetString(data);
+
+
+        public static byte[] SubBytes(byte[] data, int start, int length)
         {
             if (data.Length < start + length)
             {
@@ -56,17 +56,15 @@ namespace Neunity.Adapters.Unity
 
         }
 
-        public static bool ByteArray2Bool(byte[] data)
-        {
-            if (data.Length == 0) return false;
-            return data[0] != 0;
-        }
+		public static bool Bytes2Bool(byte[] data) => (data.Length == 0)? false: (data[0]!=0);
 
-        public static byte[] Bool2ByteArray(bool val)
-        {
-            if (val) return new byte[1] { 1 };
-            return new byte[1] { 0 };
-        }
+		public static byte[] Bool2Bytes(bool val) => val ? (new byte[1] { 1 }) : new byte[1] { 0 };
+
+
+		public static bool And(bool left, bool right) => left && right;
+
+
+		public static bool Or(bool left, bool right) => left || right;
 
         //public static byte[] Byte2ByteArray(byte b) => new byte[1] { b };
 
@@ -77,7 +75,7 @@ namespace Neunity.Adapters.Unity
 
     public static class Extensions
     {
-		public static byte[] ToScriptHash(this string address) => Conv.String2ByteArray(address);
+		public static byte[] ToScriptHash(this string address) => Op.String2Bytes(address);
     }
 
     public enum TriggerType : byte
@@ -98,39 +96,45 @@ namespace Neunity.Adapters.Unity
         public static void Notify(params object[] state) { }
     }
 
+	public static class Blockchain{
+		public static uint GetHeight(){
+			return 10000;
+		}
+	}
+
     public class StorageContext { }
 
     public class Storage
     {
         public static StorageContext CurrentContext = new StorageContext();
-		public static byte[] Get(StorageContext context, string key) => Get(context, Conv.String2ByteArray(key));
+		public static byte[] Get(StorageContext context, string key) => Get(context, Op.String2Bytes(key));
 
 
         public static void Put(StorageContext context, byte[] key, BigInteger value)
         {
-			Put(context, key, Conv.BigInteger2ByteArray(value));
+			Put(context, key, Op.BigInt2Bytes(value));
         }
         public static void Put(StorageContext context, byte[] key, string value)
         {
-			Put(context, key, Conv.String2ByteArray(value));
+			Put(context, key, Op.String2Bytes(value));
         }
 
         public static void Put(StorageContext context, string key, byte[] value)
         {
-			Put(context, Conv.String2ByteArray(key), value);
+			Put(context, Op.String2Bytes(key), value);
         }
         public static void Put(StorageContext context, string key, BigInteger value)
         {
-			Put(context, Conv.String2ByteArray(key), value);
+			Put(context, Op.String2Bytes(key), value);
         }
         public static void Put(StorageContext context, string key, string value)
         {
-			Put(context, Conv.String2ByteArray(key), value);
+			Put(context, Op.String2Bytes(key), value);
         }
 
         public static void Delete(StorageContext context, string key)
         {
-			Delete(context, Conv.String2ByteArray(key));
+			Delete(context, Op.String2Bytes(key));
         }
 
 

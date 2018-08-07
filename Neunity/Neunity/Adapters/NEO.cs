@@ -9,16 +9,11 @@ using System.Numerics;
 
 namespace Neunity.Adapters.NEO
 {
-	public static class Conv
+	public static class Op
     {
         public static byte[] JoinTwoByteArray(byte[] ba1, byte[] ba2) => ba1.Concat(ba2);
-        public static BigInteger ByteArray2BigInteger(byte[] data)
-        {
-            if (data.Length == 0) return 0;
-            return data.AsBigInteger();
-        }
 
-        public static byte[] JoinByteArray(params byte[][] args)
+		public static byte[] JoinByteArray(params byte[][] args)
         {
             if (args.Length == 0) { return new byte[0]; }
             else
@@ -33,31 +28,50 @@ namespace Neunity.Adapters.NEO
             }
         }
 
-        public static byte[] BigInteger2ByteArray(BigInteger bigInteger)
+		public static BigInteger Bytes2BigInt(byte[] data)
+        {
+            if (data.Length == 0) return 0;
+            return data.AsBigInteger();
+        }
+
+        
+
+		public static byte[] BigInt2Bytes(BigInteger bigInteger)
         {
             if (bigInteger == 0) return new byte[1] { 0 };
             return bigInteger.AsByteArray();
         }
-        public static byte[] String2ByteArray(String str)
+		public static byte[] String2Bytes(String str)
         {
             if (str.Length == 0) return "\0".AsByteArray();
 
             return str.AsByteArray();
         }
-        public static String ByteArray2String(byte[] data) => data.AsString();
-        public static byte[] SubByteArray(byte[] data, int start, int length) => Helper.Range(data, start, length);
+		public static String Bytes2String(byte[] data) => data.AsString();
+		public static byte[] SubBytes(byte[] data, int start, int length) => Helper.Range(data, start, length);
 
 
-        public static bool ByteArray2Bool(byte[] data)
+		public static bool Bytes2Bool(byte[] data)
         {
             if (data.Length == 0) return false;
             return data[0] != 0;
         }
 
-        public static byte[] Bool2ByteArray(bool val)
+		public static byte[] Bool2Bytes(bool val)
         {
             if (val) return new byte[1] { 1 };
             return new byte[1] { 0 };
+        }
+
+		public static bool And(bool left, bool right){
+			if (left) return right;
+			return false;
+		}
+
+		public static bool Or(bool left, bool right)
+        {
+			if (left) return true;
+			return right;
         }
     }
 }

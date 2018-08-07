@@ -8,10 +8,10 @@ namespace Neunity.Test
 {
 
     [TestFixture()]
-    public class TestConversion
+    public class TestOpersion
     {
         [Test()]
-        public void TestConv()
+        public void TestOp()
         {
             BigInteger integer = 15;
             byte b = integer.ToByteArray()[0];
@@ -33,10 +33,10 @@ namespace Neunity.Test
             byte[] data = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             byte[] out1 = { 1, 2, 3 };
 
-            Assert.AreEqual(Conv.SubByteArray(data, 0, 3), out1);
+            Assert.AreEqual(Op.SubBytes(data, 0, 3), out1);
 
             byte[] out2 = { 4, 5, 6, 7, 8, 9 };
-            Assert.AreEqual(Conv.SubByteArray(data, 3, 6), out2);
+			Assert.AreEqual(Op.SubBytes(data, 3, 6), out2);
 
 
         }
@@ -56,13 +56,13 @@ namespace Neunity.Test
                 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11
             };
 
-            byte[] datajoin = Conv.JoinByteArray(data1, data2, data3, data4);
+            byte[] datajoin = Op.JoinByteArray(data1, data2, data3, data4);
 
             Assert.AreEqual(dataout, datajoin);
         }
 
         [Test()]
-        public void TestConvNull()
+        public void TestOpNull()
         {
             /**
                 Default Values: 
@@ -78,28 +78,28 @@ namespace Neunity.Test
             byte[] zBA = new byte[1] { 0x00 };
             //----- Bool -------
             bool b1 = false;
-            Assert.AreEqual(b1, Conv.ByteArray2Bool(nullBA));
-            Assert.AreEqual(Conv.Bool2ByteArray(b1), zBA);
+            Assert.AreEqual(b1, Op.Bytes2Bool(nullBA));
+            Assert.AreEqual(Op.Bool2Bytes(b1), zBA);
 
             //----- BigInt -------
-            BigInteger big = Conv.ByteArray2BigInteger(nullBA);
+            BigInteger big = Op.Bytes2BigInt(nullBA);
             BigInteger bp1 = big + 1;
 
             Assert.AreEqual(big, new BigInteger(0));
             Assert.AreEqual(bp1, new BigInteger(1));
-            Assert.AreEqual(Conv.BigInteger2ByteArray(big), zBA);
+            Assert.AreEqual(Op.BigInt2Bytes(big), zBA);
 
             //----- String -------
-            String str = Conv.ByteArray2String(nullBA);
+            String str = Op.Bytes2String(nullBA);
             Assert.AreEqual(str, "\0");
-            Assert.AreEqual(Conv.String2ByteArray(str), zBA);
+            Assert.AreEqual(Op.String2Bytes(str), zBA);
 
 
 
         }
 
         [Test()]
-        public void TestConv1()
+        public void TestOp1()
         {
             BigInteger i1 = 1;
             BigInteger i2 = 12102159;
@@ -108,12 +108,12 @@ namespace Neunity.Test
             string s1 = "";
             string s2 = "adfeav";
 
-            byte[] bi1 = Conv.BigInteger2ByteArray(i1);
-            byte[] bi2 = Conv.BigInteger2ByteArray(i2);
-            byte[] bb1 = Conv.Bool2ByteArray(b1);
-            byte[] bb2 = Conv.Bool2ByteArray(b2);
-            byte[] bs1 = Conv.String2ByteArray(s1);
-            byte[] bs2 = Conv.String2ByteArray(s2);
+            byte[] bi1 = Op.BigInt2Bytes(i1);
+			byte[] bi2 = Op.BigInt2Bytes(i2);
+            byte[] bb1 = Op.Bool2Bytes(b1);
+			byte[] bb2 = Op.Bool2Bytes(b2);
+            byte[] bs1 = Op.String2Bytes(s1);
+			byte[] bs2 = Op.String2Bytes(s2);
 
             Assert.AreNotEqual(bi1, bi2);
         }

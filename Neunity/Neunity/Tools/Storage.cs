@@ -31,10 +31,10 @@ namespace Neunity.Toolchain
             }
             else
             {
-                byte[] r = Conv.String2ByteArray(elements[0]);
+                byte[] r = Op.String2Bytes(elements[0]);
                 for (int i = 1; i < elements.Length; i++)
                 {
-                    r = Conv.JoinTwoByteArray(r, Conv.String2ByteArray(elements[i]));
+                    r = Op.JoinTwoByteArray(r, Op.String2Bytes(elements[i]));
                 }
                 return r;
             }
@@ -48,10 +48,10 @@ namespace Neunity.Toolchain
             }
             else
             {
-                byte[] r = Conv.String2ByteArray(elements[0]);
+                byte[] r = Op.String2Bytes(elements[0]);
                 for (int i = 1; i < elements.Length; i++)
                 {
-                    r = Conv.JoinByteArray(r, splitter, Conv.String2ByteArray(elements[i]));
+                    r = Op.JoinByteArray(r, splitter, Op.String2Bytes(elements[i]));
                 }
                 return r;
             }

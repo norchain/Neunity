@@ -3,12 +3,12 @@
 using System.Numerics;
 
 
-using Neunity.Toolchain;
+using Neunity.Tools;
 using Neunity.Adapters.Unity;
 
 using System;
 using Neo.SmartContract.Framework;
-using Neo.SmartContract.Framework.Services.Neo;
+//using Neo.SmartContract.Framework.Services.Neo;
 using Neo.SmartContract.Framework.Services.System;
 using Helper = Neo.SmartContract.Framework.Helper;
 
@@ -243,13 +243,13 @@ namespace Norchain.Contract
         {
             return SD.JoinSegs2Seg(SD.SegString(war.id), SD.SegInt(war.regEndBlock));
         }
-
+        
 
         public static War ByteArrayToWar(byte[] data)
         {
             War war = new War();
-            war.id = Conv.ByteArray2String(SD.DesegWithIdFromSeg(data, 0));
-			war.regEndBlock = Conv.ByteArray2BigInteger(SD.DesegWithIdFromSeg(data, 1));
+            war.id = Op.Bytes2String(SD.DesegWithIdFromSeg(data, 0));
+			war.regEndBlock = Op.Bytes2BigInt(SD.DesegWithIdFromSeg(data, 1));
             BigInteger height = Blockchain.GetHeight();
             war.regLeftBlocks = war.regEndBlock - height;
             return war;

@@ -2,7 +2,7 @@
 using System.Numerics;
 using Neunity.Adapters.Unity;
 
-namespace Neunity.Toolchain
+namespace Neunity.Tools
 {
     public static class SD
     {
@@ -69,9 +69,9 @@ namespace Neunity.Toolchain
 
         #region Seg
 
-        public static byte[] SegInt(BigInteger body) => Seg(Conv.BigInteger2ByteArray(body));
-        public static byte[] SegString(string body) => Seg(Conv.String2ByteArray(body));
-        public static byte[] SegBool(bool body) => Seg(Conv.Bool2ByteArray(body));
+        public static byte[] SegInt(BigInteger body) => Seg(Op.BigInt2Bytes(body));
+        public static byte[] SegString(string body) => Seg(Op.String2Bytes(body));
+        public static byte[] SegBool(bool body) => Seg(Op.Bool2Bytes(body));
         //public static byte[] SegByte(byte b) => new byte[2] { 1, b };
 
         public static byte[] Seg(byte[] body)
@@ -83,10 +83,10 @@ namespace Neunity.Toolchain
 
             for (int i = 0; i < body.Length / 255; i++)
             {
-                r = Conv.JoinTwoByteArray(r, new byte[1] { 255 });
+                r = Op.JoinTwoByteArray(r, new byte[1] { 255 });
             }
 
-            return Conv.JoinTwoByteArray(Conv.JoinTwoByteArray(r, Conv.BigInteger2ByteArray(rem)), body);
+            return Op.JoinTwoByteArray(Op.JoinTwoByteArray(r, Op.BigInt2Bytes(rem)), body);
         }
 
 
@@ -95,9 +95,9 @@ namespace Neunity.Toolchain
         #region Join
         public static byte[] JoinSegs2Seg(params byte[][] segs) => Seg(JoinSegs2Table(segs));
 
-        public static byte[] JoinSegs2Table(params byte[][] segs) => Conv.JoinByteArray(segs);
+        public static byte[] JoinSegs2Table(params byte[][] segs) => Op.JoinByteArray(segs);
 
-        public static byte[] JoinToTable(byte[] table, byte[] seg) => Conv.JoinTwoByteArray(table, seg);
+        public static byte[] JoinToTable(byte[] table, byte[] seg) => Op.JoinTwoByteArray(table, seg);
 
         #endregion
 
@@ -114,7 +114,7 @@ namespace Neunity.Toolchain
                 ++i;
             }
             segLen += data[i + start];
-            return Conv.SubByteArray(data, start + i + 1, segLen);
+            return Op.SubBytes(data, start + i + 1, segLen);
         }
 
 

@@ -37,17 +37,18 @@
   <ItemGroup>
     <Compile Include="Adapters\NEO.cs" />
     <Compile Include="Adapters\Unity.cs" />
-    <Compile Include="ToolChain\Serialization.cs" />
-    <Compile Include="ToolChain\Storage.cs" />
-    <Compile Include="Tests\TestConversion.cs" />
-    <Compile Include="Tests\TestSerialization.cs" />
+    <Compile Include="Tools\Serialization.cs" />
+    <Compile Include="Tools\Storage.cs" />
+    <Compile Include="Tests\TestOpUnity.cs" />
+    <Compile Include="Tests\TestSerializationUnity.cs" />
+    <Compile Include="Tests\TestOpNEO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Adapters\" />
-    <Folder Include="ToolChain\" />
+    <Folder Include="Tools\" />
     <Folder Include="Tests\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
