@@ -27,58 +27,77 @@ The C# applications may have various restrictions of .Net framework adaption. In
 
 In order to realise the targets mentioned at the end of the previous section, let's consider a three layer structure demostrated in the following figure. 
 
-![NeunityStructure](pics/NeunityStructure.jpg)
+![NeunityStructure](pics/Neunity.jpg)
 
 ### Application Layer
 
 This is the top layer of the whole Dapp, also the only layer that requires the developer's implementation in Neunity's structure. Application layer logic is divided into two categories:
 
-1. **Offchain Logic**: Any logic that developers don't want to put into SC. eg. The UI, ViewController, etc.
-2. **Contract Logic**: The logic that developers willing to put into SC. eg. the assert managment, public algorithms, etc. These logic can be shared between SC and client. Let's check the following snippet: 
+1. **Offchain Logic**: Any logic that developers would't put into SC. eg. The UI, ViewController, etc.
+2. **Contract Logic**: The SC logic, including the assert managment, public algorithms, etc. These logic can actually be shared between SC and client. Let's check the following SC snippet: 
 
 ```csharp
-public class Card
-{
-    public BigInteger type;   //TypeArmy
-    public byte[] lvls;    // Range: 0 - 255
-    public BigInteger owner;
-    public BigInteger score;
-    //... Other fields ... 
-}
+/** Sample SC code */
+namespace Neunity.SmartContract{
+    public class SomeCardGame : SmartContract{
+        public class Card
+        {
+            public BigInteger type;   //TypeArmy
+            public byte[] lvls;    // Range: 0 - 255
+            public BigInteger owner;
+            public BigInteger score;
+            //... Other fields ... 
+        }
 
-public static byte[] CardToBytes(Card card)
-{
-    //... Customized Serialization for Card
-}
+        public static byte[] CardToBytes(Card card)
+        {
+            //... Customized Serialization for Card
+        }
 
-public static Card BytesToCard(byte[] data) => new Card{
-    //... Customized Deserialization for Card
-};
+        public static Card BytesToCard(byte[] data) => new Card
+        {
+            //... Customized Deserialization for Card
+        };
 
 
-public static Object CardMerge(params object[] args)
-{
-    if (args.Length < 3) return false;
-    // ... The Logic of the result of merging the cards
-}
+        public static Object CardMerge(params object[] args)
+        {
+            // ... The Logic of the result of merging the cards
+        }
 
-public static Object Main(string operation, params object[] args)
-{
-    if (operation == "cardMerge")
-    {
-        return CardMerge(args);
+        public static Object Main(string operation, params object[] args)
+        {
+            if (operation == "cardMerge")
+            {
+                return CardMerge(args);
+            }
+            if(operation == "getCard") {	//Used Internally Only
+                byte[] cardData = (byte[])args[0];
+                return BytesToCard(cardData);
+            }
+            //... Other operations
+            return false;
+        }
     }
-    if(operation == "getCard") {	//Used Internally
-        byte[] cardData = (byte[])args[0];
-        return BytesToCard(cardData);
-    }
-	//... Other operations
-    return false;
 }
+
 
 ```
 
 In the above snippet, we have the definition of the class `Card` along with related operations. These logic can be used in SC, and also very useful on the Unity side to make the players preview the merge result before invoking the contract.
+
+```cs
+/**The client code run in Unity*/
+using Neunity.SmartContract;
+public class TestSC{
+    public MergeTwoCards(Card c1, Card c2){
+        object[] args = new object[2];
+        
+    }
+}
+```
+
+
 
 It's recommended that the developers to seperate the offchain, contract and shared logic into different files while developing/debuging, while put the contract and shared logic as parts of SC during 
 

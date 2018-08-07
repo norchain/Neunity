@@ -46,11 +46,13 @@
     <Compile Include="Tests\TestOpUnity.cs" />
     <Compile Include="Tests\TestSerializationUnity.cs" />
     <Compile Include="Tests\TestOpNEO.cs" />
+    <Compile Include="Samples\CardGameSC.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Adapters\" />
     <Folder Include="Tools\" />
     <Folder Include="Tests\" />
+    <Folder Include="Samples\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
