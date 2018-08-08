@@ -26,6 +26,22 @@ namespace Neunity.Adapters.Unity
 
 		public static byte[] Bool2Bytes(bool val) => val ? (new byte[1] { 1 }) : new byte[1] { 0 };
 
+        public static byte[] HexToBytes(this string hexString) {
+            if(hexString == null || hexString.Length == 0)
+                return new byte[0];
+            if(hexString.Length % 2 == 1)
+                throw new FormatException();
+
+            if(hexString.StartsWith("0x")) {
+                hexString = hexString.Substring(2);
+            }
+
+            byte[] result = new byte[hexString.Length / 2];
+            for(int i = 0; i < result.Length; i++)
+                result[i] = byte.Parse(hexString.Substring(i * 2, 2), NumberStyles.AllowHexSpecifier);
+            return result;
+        }
+
         public static byte[] SubBytes(byte[] data, int start, int length)
         {
             if (data.Length < start + length)
