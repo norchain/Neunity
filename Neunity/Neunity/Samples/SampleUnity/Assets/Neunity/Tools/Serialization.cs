@@ -4,8 +4,7 @@ using Neunity.Adapters.Unity;
 
 namespace Neunity.Tools
 {
-    public static class SD
-    {
+    public static class SD{
 
         /* -----------------------------------------------------------------
          * Seralization/Deseralization

@@ -1,17 +1,11 @@
 ﻿<Properties StartupConfiguration="{8C0BB320-66A5-26F8-EDC1-5B49D7884DC0}|">
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/TestCall.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CardGameSC.cs">
     <Files>
-      <File FileName="Assets/Scripts/CardGameSC.cs" Line="11" Column="26" NotebookId="1" />
-      <File FileName="Assets/Neunity/Adapters/Unity.cs" Line="6" Column="33" NotebookId="1" />
+      <File FileName="Assets/Scripts/CardGameSC.cs" Line="79" Column="3" />
+      <File FileName="Assets/Neunity/Adapters/Unity.cs" Line="102" Column="2" />
+      <File FileName="Assets/Neunity/Tools/Serialization.cs" Line="5" Column="24" />
     </Files>
-    <FloatingWindows>
-      <FloatingWindow WindowId="1" X="2362" Y="216" Width="640" Height="480">
-        <Files>
-          <File FileName="Assets/Scripts/TestCall.cs" Line="9" Column="3" />
-        </Files>
-      </FloatingWindow>
-    </FloatingWindows>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

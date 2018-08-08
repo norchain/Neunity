@@ -22,7 +22,7 @@ public class TestCall : MonoBehaviour {
         {
             type = CardGame.TypeArmy.Archer,
             lvls = new byte[4] { 1, 2, 4, 5 },
-            score = 12,
+			birthBlock = 10002,
             name = "Nice Archer"
         };
 
@@ -30,7 +30,7 @@ public class TestCall : MonoBehaviour {
         {
             type = CardGame.TypeArmy.Cavalry,
             lvls = new byte[4] { 12, 0, 3, 5 },
-            score = 55,
+			birthBlock = 10055,
             name = "The last Knight"
         };
 
@@ -48,7 +48,7 @@ public class TestCall : MonoBehaviour {
             lvlString += cardNew.lvls[i].ToString() + ",";
         }
         Debug.Log("New card's lvls:\t" + lvlString);
-        Debug.Log("New card's score:\t" + cardNew.score);
+		Debug.Log("New card's birthBlock:\t" + cardNew.birthBlock);
         Debug.Log("New card's type:\t" + cardNew.type);
     }
 }
