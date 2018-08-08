@@ -86,5 +86,9 @@ namespace Neunity.Adapters.NEO
         }
 
 
+		public static void Log(string str){
+			Runtime.Notify(str);
+		}
+
     }
 }

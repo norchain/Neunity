@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Numerics;
 using System.Text;
-
+//using UnityEngine;
 
 namespace Neunity.Adapters.Unity
 {
@@ -70,8 +70,11 @@ namespace Neunity.Adapters.Unity
 		public static bool Or(bool left, bool right) => left || right;
 
         //public static byte[] Byte2ByteArray(byte b) => new byte[1] { b };
-
-
+        
+		public static void Log(string str)
+        {
+			//TBD Debug.Log(str);
+        }
     }
 
     public class SmartContract { }
