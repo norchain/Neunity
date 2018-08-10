@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Numerics;
 using System.Text;
-
+using System.IO;
+using UnityEngine;
+using System.Globalization;
+using System.Collections.Generic;
 
 namespace Neunity.Adapters.Unity
 {
@@ -107,8 +110,43 @@ namespace Neunity.Adapters.Unity
 
     public class StorageContext { }
 
+
+    public static class NeUtil {
+        public static string ByteToHex(this byte[] data) {
+            string hex = BitConverter.ToString(data).Replace("-", "").ToLower();
+            return hex;
+        }
+
+        public static string ToHexString(this IEnumerable<byte> value) {
+            StringBuilder sb = new StringBuilder();
+            foreach(byte b in value)
+                sb.AppendFormat("{0:x2}", b);
+            return sb.ToString();
+        }
+
+        public static byte[] HexToBytes(this string value) {
+            if(value == null || value.Length == 0)
+                return new byte[0];
+            if(value.Length % 2 == 1)
+                throw new FormatException();
+
+            if(value.StartsWith("0x")) {
+                value = value.Substring(2);
+            }
+
+            byte[] result = new byte[value.Length / 2];
+            for(int i = 0; i < result.Length; i++)
+                result[i] = byte.Parse(value.Substring(i * 2, 2), NumberStyles.AllowHexSpecifier);
+            return result;
+        }
+    }
+
     public class Storage
     {
+        const string RECORD_DATA_FILE = "smartcontract_data.jsn";
+        static JSONNode s_jsonNode = null;
+
+
         public static StorageContext CurrentContext = new StorageContext();
 		public static byte[] Get(StorageContext context, string key) => Get(context, Op.String2Bytes(key));
 
@@ -143,18 +181,68 @@ namespace Neunity.Adapters.Unity
 
         public static byte[] Get(StorageContext context, byte[] key)
         {
-            //TBD
-            return new byte[0];
+
+            string strKey = key.ByteToHex();
+            if(s_jsonNode == null) {
+                string strContent = LoadData();
+                if(strContent.Length > 0) {
+                    s_jsonNode = JSONNode.Parse(strContent);
+                } else { 
+                    s_jsonNode = JSONNode.Parse("{}");
+                }
+            }
+            if(s_jsonNode[strKey] == null) {
+                return new byte[0];
+            } else {
+                string strHexValue = s_jsonNode[strKey];
+                return strHexValue.HexToBytes();
+            }
         }
 
         public static void Put(StorageContext context, byte[] key, byte[] value)
         {
-            //TBD
+            string strKey = key.ByteToHex();
+            string strValue = value.ByteToHex();
+
+            if(s_jsonNode == null){
+                s_jsonNode = JSONNode.Parse("{}");
+            }
+            s_jsonNode[strKey] = strValue;
+            string strContent = s_jsonNode.ToPrettyString();
+            SaveData(strContent);
         }
 
         public static void Delete(StorageContext context, byte[] key)
         {
-            //TBD
+            string strKey = key.ByteToHex();
+
+            if(s_jsonNode == null) {
+                s_jsonNode = JSONNode.Parse("{}");
+                return;
+            }
+            s_jsonNode.Remove(strKey);
+            string strContent = s_jsonNode.ToPrettyString();
+            SaveData(strContent);
+        }
+
+        public static void SaveData(string strContent) {
+            string filePath = Application.persistentDataPath + "/" + RECORD_DATA_FILE;
+            StreamWriter streamWriter = File.CreateText(filePath);
+            streamWriter.Write(strContent);
+            streamWriter.Close();
+        }
+
+        public static string LoadData() {
+            string filePath = Application.persistentDataPath + "/" + RECORD_DATA_FILE;
+            if(File.Exists(filePath)) {
+                StreamReader streamReader = File.OpenText(filePath);
+                string strContent = streamReader.ReadToEnd();
+                streamReader.Close();
+                return strContent;
+            } else {
+                return "{}";
+            }
+
         }
     }
 }
