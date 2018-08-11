@@ -11,7 +11,7 @@ public class ManagerCards : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        //MergeCards();
+        MergeCards();
         TestLocalStorage();
 	}
 	
@@ -64,5 +64,6 @@ public class ManagerCards : MonoBehaviour {
         byte[] nameResult  = IO.GetStorageWithKey(key);
         string strName = Encoding.UTF8.GetString(nameResult);
         Debug.Log(strName);
+
     }
 }

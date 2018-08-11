@@ -194,7 +194,7 @@ namespace Neunity.Adapters.Unity
             if(s_jsonNode[strKey] == null) {
                 return new byte[0];
             } else {
-                string strHexValue = s_jsonNode[strKey];
+                string strHexValue = s_jsonNode[strKey].Value;
                 return strHexValue.HexToBytes();
             }
         }
