@@ -616,7 +616,7 @@ PlayerSettings:
   cloudServicesEnabled:
     UNet: 1
   facebookSdkVersion: 7.9.4
-  apiCompatibilityLevel: 2
+  apiCompatibilityLevel: 3
   cloudProjectId: dc592876-7662-45ce-a3cf-6a1d8dc4cc22
   projectName: SampleUnity
   organizationId: liqing-pan
