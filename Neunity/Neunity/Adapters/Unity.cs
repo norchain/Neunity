@@ -92,7 +92,11 @@ namespace Neunity.Adapters.Unity
         {
 			//TBD Debug.Log(str);
         }
+
+
     }
+    
+    
 
     public class SmartContract { }
 
