@@ -8,7 +8,8 @@ Material
 # Unity Visual Studio / MonoDevelop generated #
 # =========================================== #
 Samples/SampleUnity/Library/
-obj/
+Samples/SampleUnity/obj/
+Samples/SampleUnity/Temp/
 *.svd
 *.userprefs
 /*.csproj
