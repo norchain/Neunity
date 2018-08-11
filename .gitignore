@@ -2,3 +2,22 @@ Neunity/Neunity/bin
 Neunity/Neunity/obj
 Neunity/.vs
 Material
+
+
+# =========================================== #
+# Unity Visual Studio / MonoDevelop generated #
+# =========================================== #
+Samples/SampleUnity/Library/
+obj/
+*.svd
+*.userprefs
+/*.csproj
+*.csproj
+*.pidb
+*.suo
+/*.sln
+*.sln
+*.user
+*.unityproj
+*.booproj
+*.~lock*

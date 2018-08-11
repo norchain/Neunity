@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Neunity.SomeCardGame;
+using Neunity.Tools;
+using Neunity.Adapters.Unity;
+using System.Text;
 
 
 public class ManagerCards : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        MergeCards();
+        //MergeCards();
+        TestLocalStorage();
 	}
 	
 	// Update is called once per frame
@@ -50,5 +54,15 @@ public class ManagerCards : MonoBehaviour {
         Debug.Log("New card's lvls:\t" + lvlString);
 		Debug.Log("New card's birthBlock:\t" + cardNew.birthBlock);
         Debug.Log("New card's type:\t" + cardNew.type);
+    }
+
+    void TestLocalStorage() {
+        byte[] key = Encoding.UTF8.GetBytes("name");
+        byte[] name = Encoding.UTF8.GetBytes("terrence");
+        IO.SetStorageWithKey(key, name);
+
+        byte[] nameResult  = IO.GetStorageWithKey(key);
+        string strName = Encoding.UTF8.GetString(nameResult);
+        Debug.Log(strName);
     }
 }
