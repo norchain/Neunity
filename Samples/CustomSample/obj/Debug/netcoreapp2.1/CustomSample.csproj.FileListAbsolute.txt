@@ -1,0 +1,14 @@
+/Users/ZhenjiangLiu/Documents/Working/NEO/Neunity/Samples/CustomSample/bin/Debug/netcoreapp2.1/Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+/Users/ZhenjiangLiu/Documents/Working/NEO/Neunity/Samples/CustomSample/bin/Debug/netcoreapp2.1/Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+/Users/ZhenjiangLiu/Documents/Working/NEO/Neunity/Samples/CustomSample/bin/Debug/netcoreapp2.1/Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+/Users/ZhenjiangLiu/Documents/Working/NEO/Neunity/Samples/CustomSample/bin/Debug/netcoreapp2.1/CustomSample.deps.json
+/Users/ZhenjiangLiu/Documents/Working/NEO/Neunity/Samples/CustomSample/bin/Debug/netcoreapp2.1/CustomSample.runtimeconfig.json
+/Users/ZhenjiangLiu/Documents/Working/NEO/Neunity/Samples/CustomSample/bin/Debug/netcoreapp2.1/CustomSample.runtimeconfig.dev.json
+/Users/ZhenjiangLiu/Documents/Working/NEO/Neunity/Samples/CustomSample/bin/Debug/netcoreapp2.1/CustomSample.dll
+/Users/ZhenjiangLiu/Documents/Working/NEO/Neunity/Samples/CustomSample/bin/Debug/netcoreapp2.1/CustomSample.pdb
+/Users/ZhenjiangLiu/Documents/Working/NEO/Neunity/Samples/CustomSample/obj/Debug/netcoreapp2.1/CustomSample.csproj.CoreCompileInputs.cache
+/Users/ZhenjiangLiu/Documents/Working/NEO/Neunity/Samples/CustomSample/obj/Debug/netcoreapp2.1/CustomSample.AssemblyInfoInputs.cache
+/Users/ZhenjiangLiu/Documents/Working/NEO/Neunity/Samples/CustomSample/obj/Debug/netcoreapp2.1/CustomSample.AssemblyInfo.cs
+/Users/ZhenjiangLiu/Documents/Working/NEO/Neunity/Samples/CustomSample/obj/Debug/netcoreapp2.1/CustomSample.dll
+/Users/ZhenjiangLiu/Documents/Working/NEO/Neunity/Samples/CustomSample/obj/Debug/netcoreapp2.1/CustomSample.pdb
+/Users/ZhenjiangLiu/Documents/Working/NEO/Neunity/Samples/CustomSample/obj/Debug/netcoreapp2.1/CustomSample.csprojAssemblyReference.cache
