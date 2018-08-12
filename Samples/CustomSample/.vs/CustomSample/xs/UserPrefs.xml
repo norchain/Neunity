@@ -1,0 +1,24 @@
+﻿<Properties StartupConfiguration="{3E89751E-8CF2-4EB7-87AB-10267E25C974}|Default">
+  <MonoDevelop.Ide.ItemProperties.CustomSample PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MySmartContract.cs">
+    <Files>
+      <File FileName="UnitTest1.cs" Line="20" Column="21" />
+      <File FileName="MySmartContract.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="CustomSample" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/ZhenjiangLiu/Documents/Working/NEO/Neunity/Samples/CustomSample/MySmartContract.cs" relfile="MySmartContract.cs" line="83" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>
