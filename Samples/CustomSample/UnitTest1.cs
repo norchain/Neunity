@@ -44,5 +44,17 @@ namespace CustomSample.Test
             BigInteger balance2 = (BigInteger)MySmartContract.Main("balance", "liu");
             Assert.AreEqual(100, balance2);
         }
+
+        [TestMethod]
+        public void TestDelete() {
+            MySmartContract.Student stu = TestHelper.create(1, "liu", 100);
+
+            bool delete = (bool)MySmartContract.Main("delete", "liu");
+            Assert.AreEqual(true, delete);
+
+            // 0 balance
+            BigInteger balance = (BigInteger)MySmartContract.Main("balance", "liu");
+            Assert.AreEqual(0, balance);
+        }
     }
 }
