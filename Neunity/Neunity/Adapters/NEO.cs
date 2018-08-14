@@ -94,17 +94,9 @@ namespace Neunity.Adapters.NEO
 			Runtime.Notify(str);
 		}
 
-		//private static string keyRandom = "kr";
-
-		//public static byte[] Random()
-   //     {
-			//byte[] ranSeed = Storage.Get(Storage.CurrentContext, keyRandom);
-			//byte[] hash = Blockchain.GetHeader(Blockchain.GetHeight()).Hash;
-			//byte[] ba = Sha256(ranSeed.Concat(hash));
-			//Storage.Put(Storage.CurrentContext, keyRandom, (ranSeed.AsBigInteger() + 1).AsByteArray());
-			//return ba;
-
-        //}
+        public static void SetStoragePath(string path)
+        {
+        }
     }
 
 }

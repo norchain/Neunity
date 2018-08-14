@@ -35,15 +35,14 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App\NuService.cs" />
-    <Compile Include="Tests\TestOpNEO.cs" />
-    <Compile Include="Tests\TestOpUnity.cs" />
-    <Compile Include="Tests\TestSerializationUnity.cs" />
+    <Compile Include="App\NUService.cs" />
+    <Compile Include="Tests\TestAdapterNEO.cs" />
+    <Compile Include="Tests\TestAdapterUnity.cs" />
+    <Compile Include="Tests\TestNuSDUnity.cs" />
     <Compile Include="Tools\NUSerialization.cs" />
     <Compile Include="Tools\NUStorage.cs" />
     <Compile Include="Tools\NUTransferProtocol.cs" />
     <Compile Include="App\SmartContract.cs" />
-    <Compile Include="Adapters\DataStorage.cs" />
     <Compile Include="Adapters\NEO.cs" />
     <Compile Include="Adapters\SimpleJSON.cs" />
     <Compile Include="Adapters\Unity.cs" />

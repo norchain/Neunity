@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Numerics;
 using System.Text;
-//using UnityEngine;
-using HiStudioGames.Utils;
+
+using System.IO;
 using System.Globalization;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 
 namespace Neunity.Adapters.Unity
 {
-    public static class Op
+    public static class Op 
     {
 
         public static byte[] Void = new byte[0];
@@ -38,23 +39,6 @@ namespace Neunity.Adapters.Unity
 
         //public static int BigInt2Int(BigInteger i) => (int)i;
 
-        public static byte[] HexToBytes(this string hexString)
-        {
-            if (hexString == null || hexString.Length == 0)
-                return new byte[0];
-            if (hexString.Length % 2 == 1)
-                throw new FormatException();
-
-            if (hexString.StartsWith("0x"))
-            {
-                hexString = hexString.Substring(2);
-            }
-
-            byte[] result = new byte[hexString.Length / 2];
-            for (int i = 0; i < result.Length; i++)
-                result[i] = byte.Parse(hexString.Substring(i * 2, 2), NumberStyles.AllowHexSpecifier);
-            return result;
-        }
 
         public static byte[] SubBytes(byte[] data, int start, int length)
         {
@@ -99,11 +83,17 @@ namespace Neunity.Adapters.Unity
 
         public static bool Or(bool left, bool right) => left || right;
 
-        //public static byte[] Byte2ByteArray(byte b) => new byte[1] { b };
-
+ 
         public static void Log(string str)
         {
             //Debug.Log(str);
+        }
+
+        public static string RECORD_DATA_FILE = "~/smartcontract_data.jsn";
+
+        public static void SetStoragePath(string path)
+        {
+            RECORD_DATA_FILE = path;
         }
     }
 
@@ -199,10 +189,44 @@ namespace Neunity.Adapters.Unity
 
     public class StorageContext { }
 
+
+    public static class NeUtil {
+        public static string ByteToHex(this byte[] data) {
+            string hex = BitConverter.ToString(data).Replace("-", "").ToLower();
+            return hex;
+        }
+
+        public static string ToHexString(this IEnumerable<byte> value) {
+            StringBuilder sb = new StringBuilder();
+            foreach(byte b in value)
+                sb.AppendFormat("{0:x2}", b);
+            return sb.ToString();
+        }
+
+        public static byte[] HexToBytes(this string value) {
+            if(value == null || value.Length == 0)
+                return new byte[0];
+            if(value.Length % 2 == 1)
+                throw new FormatException();
+
+            if(value.StartsWith("0x")) {
+                value = value.Substring(2);
+            }
+
+            byte[] result = new byte[value.Length / 2];
+            for(int i = 0; i < result.Length; i++)
+                result[i] = byte.Parse(value.Substring(i * 2, 2), NumberStyles.AllowHexSpecifier);
+            return result;
+        }
+    }
+
     public class Storage
     {
-		//SaveDataFile
-		const string RD_FILE_NAME = "smart_data.json";
+
+
+        static JSONNode s_jsonNode = null;
+
+
 
         public static StorageContext CurrentContext = new StorageContext();
         public static byte[] Get(StorageContext context, string key) => Get(context, Op.String2Bytes(key));
@@ -238,23 +262,72 @@ namespace Neunity.Adapters.Unity
 
         public static byte[] Get(StorageContext context, byte[] key)
         {
-			string strKey = key.ToHexString();
-            string strValue = DataStorage.GetString(RD_FILE_NAME, strKey);
-            byte[] result = strValue.HexToBytes();
-            return result;
+
+
+            string strKey = key.ByteToHex();
+            if(s_jsonNode == null) {
+                string strContent = LoadData();
+                if(strContent.Length > 0) {
+                    s_jsonNode = JSONNode.Parse(strContent);
+                } else { 
+                    s_jsonNode = JSONNode.Parse("{}");
+                }
+            }
+            if(s_jsonNode[strKey] == null) {
+                return new byte[0];
+            } else {
+                string strHexValue = s_jsonNode[strKey].Value;
+                return strHexValue.HexToBytes();
+            }
+
         }
 
         public static void Put(StorageContext context, byte[] key, byte[] value)
         {
-			string strKey = key.ByteToHex();
+
+            string strKey = key.ByteToHex();
             string strValue = value.ByteToHex();
-            DataStorage.SetString(RD_FILE_NAME, strKey, strValue);
+
+            if(s_jsonNode == null){
+                s_jsonNode = JSONNode.Parse("{}");
+            }
+            s_jsonNode[strKey] = strValue;
+            string strContent = s_jsonNode.ToPrettyString();
+            SaveData(strContent);
+
         }
 
         public static void Delete(StorageContext context, byte[] key)
         {
-			string strKey = key.ByteToHex();
-            DataStorage.DeleteKey(RD_FILE_NAME, strKey);
+
+            string strKey = key.ByteToHex();
+
+            if(s_jsonNode == null) {
+                s_jsonNode = JSONNode.Parse("{}");
+                return;
+            }
+            s_jsonNode.Remove(strKey);
+            string strContent = s_jsonNode.ToPrettyString();
+            SaveData(strContent);
+        }
+
+        public static void SaveData(string strContent) {
+            StreamWriter streamWriter = File.CreateText(Op.RECORD_DATA_FILE);
+            streamWriter.Write(strContent);
+            streamWriter.Close();
+        }
+
+        public static string LoadData() {
+
+            if(File.Exists(Op.RECORD_DATA_FILE)) {
+                StreamReader streamReader = File.OpenText(Op.RECORD_DATA_FILE);
+                string strContent = streamReader.ReadToEnd();
+                streamReader.Close();
+                return strContent;
+            } else {
+                return "{}";
+            }
+
         }
     }
 }
