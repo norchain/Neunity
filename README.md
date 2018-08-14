@@ -1,6 +1,10 @@
 # Neunity
 
-Neunity simplifies the process of developing C# based NEO Dapp. Via Neunity, you can **share the NEO smart contract logic with corresponding Unity (or other .Net) project**. You can also **build testcases or put breakpoints to debug your smart contract locally without testnet interaction**. 
+Neunity is a framework aims to 
+
+
+
+simplifies the process of developing C# based NEO Dapp. Via Neunity, you can **share the NEO smart contract logic with corresponding Unity (or other .Net) project**. You can also **build testcases or put breakpoints to debug your smart contract locally without testnet interaction**. 
 
 Neunity also provides a series of tools to help C# developers to improve the experience of developing NEO smart contract, and avoid some common mistakes.
 
