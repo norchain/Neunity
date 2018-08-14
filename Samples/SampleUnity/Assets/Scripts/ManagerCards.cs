@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Neunity.SomeCardGame;
+using Neunity.App;
 using Neunity.Tools;
 using Neunity.Adapters.Unity;
 using System.Text;
-
 
 public class ManagerCards : MonoBehaviour {
 
@@ -22,28 +21,28 @@ public class ManagerCards : MonoBehaviour {
 
     void MergeCards(){
         Debug.Log("Merge Begin");
-        CardGame.Card card1 = new CardGame.Card()
+        Card card1 = new Card
         {
-            type = CardGame.TypeArmy.Archer,
+            type = TypeArmy.Archer,
             lvls = new byte[4] { 1, 2, 4, 5 },
 			birthBlock = 10002,
             name = "Nice Archer"
         };
 
-        CardGame.Card card2 = new CardGame.Card()
+        Card card2 = new Card
         {
-            type = CardGame.TypeArmy.Cavalry,
+            type = TypeArmy.Cavalry,
             lvls = new byte[4] { 12, 0, 3, 5 },
 			birthBlock = 10055,
             name = "The last Knight"
         };
 
-        byte[] b1 = CardGame.Card2Bytes(card1);
-        byte[] b2 = CardGame.Card2Bytes(card2);
+        byte[] b1 = Contract.Card2Bytes(card1);
+        byte[] b2 = Contract.Card2Bytes(card2);
 
-        byte[] bn = (byte[])CardGame.Main("cardMerge", b1, b2, "NovaCard");
+        byte[] bn = (byte[])Contract.Main("cardMerge", b1, b2, "NovaCard");
 
-        CardGame.Card cardNew = CardGame.Bytes2Card(bn);
+        Card cardNew = Contract.Bytes2Card(bn);
 
         Debug.Log("New card's name:\t" + cardNew.name);
 
@@ -59,9 +58,9 @@ public class ManagerCards : MonoBehaviour {
     void TestLocalStorage() {
         byte[] key = Encoding.UTF8.GetBytes("name");
         byte[] name = Encoding.UTF8.GetBytes("terrence");
-        IO.SetStorageWithKey(key, name);
+        NuIO.SetStorageWithKey(key, name);
 
-        byte[] nameResult  = IO.GetStorageWithKey(key);
+        byte[] nameResult  = NuIO.GetStorageWithKey(key);
         string strName = Encoding.UTF8.GetString(nameResult);
         Debug.Log(strName);
 

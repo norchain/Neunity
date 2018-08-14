@@ -1,11 +1,17 @@
 ﻿
+#if NEOSC
+using Neunity.Adapters.NEO;
+using Neo.SmartContract.Framework;
+using Neo.SmartContract.Framework.Services.Neo;
+#else
 using Neunity.Adapters.Unity;
+#endif
 
 
 namespace Neunity.Tools
 {
     /** The Utilities */
-    public static class IO{
+    public static class NuIO{
         /** The result state of Storage.Put Operation */
         public static class State
         {
@@ -30,12 +36,12 @@ namespace Neunity.Tools
             }
             else
             {
-                byte[] r = Op.String2Bytes(elements[0]);
-                for (int i = 1; i < elements.Length; i++)
+				string r = "";
+                for (int i = 0; i < elements.Length; i++)
                 {
-                    r = Op.JoinTwoByteArray(r, Op.String2Bytes(elements[i]));
+					r = r + "/" + elements[i];
                 }
-                return r;
+				return Op.String2Bytes(r);
             }
         }
 

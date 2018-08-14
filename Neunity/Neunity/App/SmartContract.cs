@@ -16,7 +16,6 @@ namespace Neunity.App
     public class Contract:SmartContract
     {
         public static object Main(string operation, params object[] args) {
-            
             return NuTP.RespDataSuccess();
         }
     }

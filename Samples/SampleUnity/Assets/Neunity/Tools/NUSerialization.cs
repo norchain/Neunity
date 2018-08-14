@@ -1,10 +1,17 @@
 ﻿
 using System.Numerics;
+
+#if NEOSC
+using Neunity.Adapters.NEO;
+#else
 using Neunity.Adapters.Unity;
+#endif
+
 
 namespace Neunity.Tools
 {
-    public static class SD{
+    public static class NuSD
+    {
 
         /* -----------------------------------------------------------------
          * Seralization/Deseralization
@@ -40,7 +47,10 @@ namespace Neunity.Tools
         }
 
         public static int SegLenOfFirstSegFromTable(byte[] table) => SegLenOfFirstSegFromData(table, 0);
-        public static int SegLenOfFirstSegFromData(byte[] data, int segStartIndex) => PreLenOfFirstSegFromData(data, segStartIndex) + BodyLenOfFirstSegFromData(data, segStartIndex);
+        public static int SegLenOfFirstSegFromData(byte[] data, int segStartIndex) {
+            int prelen = PreLenOfFirstSegFromData(data, segStartIndex);
+            return prelen + (prelen - 1) * 255 + data[prelen + segStartIndex - 1];
+        } 
 
 
         #endregion
@@ -74,11 +84,11 @@ namespace Neunity.Tools
         //public static byte[] SegByte(byte b) => new byte[2] { 1, b };
 
         public static byte[] Seg(byte[] body)
-        {
+        {   //if body = Op.Void: rem = 0;
 
             BigInteger rem = (body.Length) % 255;
 
-            byte[] r = new byte[0];
+            byte[] r = Op.Void;
 
             for (int i = 0; i < body.Length / 255; i++)
             {
@@ -101,6 +111,8 @@ namespace Neunity.Tools
         #endregion
 
         #region Deseg
+
+        public static byte[] Deseg(byte[] seg) => DesegFromTable(seg);   //Seg is a table with only 1 seg
         public static byte[] DesegFromTable(byte[] table) => DesegFromTableFromData(table, 0);
 
         public static byte[] DesegFromTableFromData(byte[] data, int start)
@@ -130,7 +142,7 @@ namespace Neunity.Tools
                 preStart += SegLenOfFirstSegFromData(data, preStart);
                 if (preStart > data.Length)
                 {
-                    return new byte[0];
+                    return Op.Void;
                 }
                 ++i;
             }
@@ -139,7 +151,32 @@ namespace Neunity.Tools
         }
         #endregion
 
+        #region Standard
 
+        public static byte[] AddSeg(this byte[] data, byte[] body) => Op.JoinTwoByteArray(data, Seg(body));
+        public static byte[] AddSegInt(this byte[] data, BigInteger body) => Op.JoinTwoByteArray(data, SegInt(body));
+        public static byte[] AddSegBool(this byte[] data, bool body) => Op.JoinTwoByteArray(data, SegBool(body));
+        public static byte[] AddSegStr(this byte[] data, string body) => Op.JoinTwoByteArray(data, SegString(body));
+
+        public static byte[] AddBody(this byte[] data, byte[] body) => Op.JoinTwoByteArray(data, body);
+        public static byte[] AddBodyInt(this byte[] data, BigInteger body) => Op.JoinTwoByteArray(data, SegInt(body));
+        public static byte[] AddBodyBool(this byte[] data, bool body) => Op.JoinTwoByteArray(data, SegBool(body));
+        public static byte[] AddBodyStr(this byte[] data, string body) => Op.JoinTwoByteArray(data, SegString(body));
+
+        public static byte[] SplitSeg(this byte[] data, int startID) => DesegFromTableFromData(data, startID);
+        public static BigInteger SplitSegInt(this byte[] data, int startID) => Op.Bytes2BigInt(DesegFromTableFromData(data, startID));
+        public static bool SplitSegBool(this byte[] data, int startID) => Op.Bytes2Bool(DesegFromTableFromData(data, startID));
+        public static string SplitSegStr(this byte[] data, int startID) => Op.Bytes2String(DesegFromTableFromData(data, startID));
+
+        public static byte[] SplitBody(this byte[] data, int startID, int length) => Op.SubBytes(data,startID,length);
+
+        public static byte[] SplitTbl(this byte[] table, int index) => DesegWithIdFromData(table, 0, index);
+        public static BigInteger SplitTblInt(this byte[] table, int index) => Op.Bytes2BigInt(DesegWithIdFromData(table, 0, index));
+        public static bool SplitTblBool(this byte[] table, int index) => Op.Bytes2Bool(DesegWithIdFromData(table, 0, index));
+        public static string SplitTblStr(this byte[] table, int index) => Op.Bytes2String(DesegWithIdFromData(table, 0, index));
+        public static int SizeTable(this byte[] table) => NumSegsOfTableFromData(table, 0);
+
+        #endregion
     }
 
 
