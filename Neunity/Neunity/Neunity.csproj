@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\NUnit.3.10.1\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.10.1\build\NUnit.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{92CB1DC3-6F3F-4FA3-971F-83D128376EDA}</ProjectGuid>
+    <ProjectGuid>{BAA31CDA-BABD-4C7A-B992-54C1032A4D9F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Neunity</RootNamespace>
     <AssemblyName>Neunity</AssemblyName>
@@ -27,32 +26,26 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="Neo.SmartContract.Framework">
-      <HintPath>..\..\..\3rdParty\NEO\neo-devpack-dotnet\Neo.SmartContract.Framework\bin\Debug\netstandard2.0\Neo.SmartContract.Framework.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.3.10.1\lib\net45\nunit.framework.dll</HintPath>
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Neo.SmartContract.Framework">
-      <HintPath>packages\Neo.SmartContract.Framework.2.7.3\lib\net40\Neo.SmartContract.Framework.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\..\..\3rdParty\NEO\neo-devpack-dotnet\Neo.SmartContract.Framework\bin\Debug\netstandard1.6\Neo.SmartContract.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App\NUService.cs" />
+    <Compile Include="Tests\TestAdapterNEO.cs" />
+    <Compile Include="Tests\TestAdapterUnity.cs" />
+    <Compile Include="Tests\TestNuSDUnity.cs" />
+    <Compile Include="Tools\NUSerialization.cs" />
+    <Compile Include="Tools\NUStorage.cs" />
+    <Compile Include="Tools\NUTransferProtocol.cs" />
+    <Compile Include="App\SmartContract.cs" />
     <Compile Include="Adapters\NEO.cs" />
+    <Compile Include="Adapters\SimpleJSON.cs" />
     <Compile Include="Adapters\Unity.cs" />
-    <Compile Include="Tools\Serialization.cs" />
-    <Compile Include="Tools\Storage.cs" />
-    <Compile Include="Tests\TestOpUnity.cs" />
-    <Compile Include="Tests\TestSerializationUnity.cs" />
-    <Compile Include="Tests\TestOpNEO.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Adapters\" />
-    <Folder Include="Tools\" />
-    <Folder Include="Tests\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

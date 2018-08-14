@@ -11,7 +11,7 @@ namespace Neunity.Adapters.NEO
 {
 	public static class Op
     {
-        
+        public static byte[] Void = new byte[0];
 
 		public static BigInteger Bytes2BigInt(byte[] data)
         {
@@ -36,7 +36,7 @@ namespace Neunity.Adapters.NEO
 
 		public static String Bytes2String(byte[] data) => data.AsString();
 
-
+        public static String BigInt2String(BigInteger bigInteger) => bigInteger.AsByteArray().AsString();
 
 		public static bool Bytes2Bool(byte[] data)
         {
@@ -50,9 +50,13 @@ namespace Neunity.Adapters.NEO
             return new byte[1] { 0 };
         }
 
-        public static byte[] Byte2Bytes(byte b){
-            return new byte[1] { b };
-        }
+        public static byte Bytes2Byte(byte[] data) => data[0];
+
+        public static byte[] Byte2Bytes(byte b) => new byte[1] { b };
+
+        public static byte Int2Byte(int i) => (byte)i;
+
+        //public static int BigInt2Int(BigInteger i) => (int)i;
 
         public static byte[] SubBytes(byte[] data, int start, int length) => Helper.Range(data, start, length);
 
@@ -90,16 +94,9 @@ namespace Neunity.Adapters.NEO
 			Runtime.Notify(str);
 		}
 
-		//private static string keyRandom = "kr";
-
-		//public static byte[] Random()
-   //     {
-			//byte[] ranSeed = Storage.Get(Storage.CurrentContext, keyRandom);
-			//byte[] hash = Blockchain.GetHeader(Blockchain.GetHeight()).Hash;
-			//byte[] ba = Sha256(ranSeed.Concat(hash));
-			//Storage.Put(Storage.CurrentContext, keyRandom, (ranSeed.AsBigInteger() + 1).AsByteArray());
-			//return ba;
-
-        //}
+        public static void SetStoragePath(string path)
+        {
+        }
     }
+
 }
