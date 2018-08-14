@@ -19,10 +19,10 @@ namespace Neunity.Adapters.Unity
         public static byte[] BigInt2Bytes(BigInteger bigInteger) => bigInteger.ToByteArray();
 
 
-        public static byte[] String2Bytes(String str) => (str.Length == 0) ? (new byte[1] { 0 }) : Encoding.UTF8.GetBytes(str);
+        public static byte[] String2Bytes(String str) => Encoding.UTF8.GetBytes(str);
 
 
-        public static String Bytes2String(byte[] data) => (data.Length == 0) ? "\0" : Encoding.UTF8.GetString(data);
+        public static String Bytes2String(byte[] data) => Encoding.UTF8.GetString(data);
 
         public static String BigInt2String(BigInteger bigInteger) => bigInteger.ToString();
 

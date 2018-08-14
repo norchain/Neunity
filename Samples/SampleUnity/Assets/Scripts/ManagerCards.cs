@@ -5,54 +5,79 @@ using Neunity.App;
 using Neunity.Tools;
 using Neunity.Adapters.Unity;
 using System.Text;
+using System.Linq;
 
 public class ManagerCards : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        MergeCards();
-        TestLocalStorage();
+        Op.SetStoragePath(Application.persistentDataPath + "/smartcontract_data.jsn");
+        //MergeCards();
+        //TestLocalStorage();
+        string a = "";
+        string b = "1";
+        string c = "advda";
+
+        byte[] ba = Op.String2Bytes(a);
+        byte[] bb = Op.String2Bytes(b);
+        byte[] bc = Op.String2Bytes(c);
+
+        string sba = Op.Bytes2String(ba);
+        string sbb = Op.Bytes2String(bb);
+        string sbc = Op.Bytes2String(bc);
+
+        Debug.Log("");
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	
+    private byte[] myID = { 123, 45, 67, 8, 9, 101, 112, 13 };
 
-    void MergeCards(){
-        Debug.Log("Merge Begin");
-        Card card1 = new Card
-        {
-            type = TypeArmy.Archer,
-            lvls = new byte[4] { 1, 2, 4, 5 },
-			birthBlock = 10002,
-            name = "Nice Archer"
-        };
+    private Card CreateCard(string id, string cardName){
 
-        Card card2 = new Card
-        {
-            type = TypeArmy.Cavalry,
-            lvls = new byte[4] { 12, 0, 3, 5 },
-			birthBlock = 10055,
-            name = "The last Knight"
-        };
+        object[] paras = new object[3];
+        paras[0] = myID;
+        paras[1] = Op.String2Bytes(id);
+        paras[2] = cardName;
 
-        byte[] b1 = Contract.Card2Bytes(card1);
-        byte[] b2 = Contract.Card2Bytes(card2);
-
-        byte[] bn = (byte[])Contract.Main("cardMerge", b1, b2, "NovaCard");
-
-        Card cardNew = Contract.Bytes2Card(bn);
-
-        Debug.Log("New card's name:\t" + cardNew.name);
-
-        string lvlString = "";
-        for (int i = 0; i < cardNew.lvls.Length; i++){
-            lvlString += cardNew.lvls[i].ToString() + ",";
+        NuTP.Response response = NuContract.InvokeWithResp("", "randomCard", paras);
+        if(response.header.code == NuTP.Code.Success){
+            return Contract.Bytes2Card(response.body);
         }
-        Debug.Log("New card's lvls:\t" + lvlString);
-		Debug.Log("New card's birthBlock:\t" + cardNew.birthBlock);
-        Debug.Log("New card's type:\t" + cardNew.type);
+        else{
+            Debug.LogError(response.header.code + ":" + response.header.description);
+
+            NuTP.Response respGetCard = NuContract.InvokeWithResp("", "getCard", paras);
+            if(respGetCard.header.code == NuTP.Code.Success){
+                return Contract.Bytes2Card(response.body);
+            }
+            else{
+                return null;
+            }
+        }
+    }
+
+    public void MergeCards(){
+        Debug.Log("Merge Begin");
+
+        // Create Card1
+        Card card1 = CreateCard("card1", "CrazyKnight");
+        // Create Card2
+        Card card2 = CreateCard("card2", "FloppyInfantry");
+
+        object[] paras = new object[3];
+        paras[0] = card1.id;
+        paras[1] = card2.id;
+        paras[2] = "SharpArchery";
+
+        NuTP.Response response = NuContract.InvokeWithResp("", "cardMerge", paras);
+        
+        if (response.header.code == NuTP.Code.Success){
+            Card cardNew = Contract.Bytes2Card(response.body);
+            Debug.Log("New card's ID:\t" + cardNew.id);
+            Debug.Log("New card's name:\t" + cardNew.name);
+            Debug.Log("New card's birthBlock:\t" + cardNew.birthBlock);
+        }
+
     }
 
     void TestLocalStorage() {
