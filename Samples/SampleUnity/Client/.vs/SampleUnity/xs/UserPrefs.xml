@@ -1,0 +1,33 @@
+﻿<Properties StartupConfiguration="{8C0BB320-66A5-26F8-EDC1-5B49D7884DC0}|">
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ManagerCards.cs">
+    <Files>
+      <File FileName="Assets/Neunity/Adapters/Unity.cs" Line="28" Column="1" NotebookId="1" />
+      <File FileName="Assets/Scripts/ManagerCards.cs" Line="56" Column="14" NotebookId="1" />
+      <File FileName="Assets/Neunity/Adapters/SimpleJSON.cs" Line="51" Column="33" NotebookId="1" />
+      <File FileName="Assets/Neunity/App/NUService.cs" Line="23" Column="1" NotebookId="1" />
+      <File FileName="Assets/Neunity/Tools/NUTransferProtocol.cs" Line="179" Column="29" NotebookId="1" />
+      <File FileName="Assets/Neunity/Tools/NUSerialization.cs" Line="126" Column="47" NotebookId="1" />
+    </Files>
+    <FloatingWindows>
+      <FloatingWindow WindowId="1" X="1207" Y="31" Width="977" Height="980">
+        <Files>
+          <File FileName="Assets/Neunity/App/SmartContract.cs" Line="243" Column="52" />
+        </Files>
+      </FloatingWindow>
+    </FloatingWindows>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/danielpan/Projects/BlockhainProjects/Essential/Neunity/Samples/SampleUnity/Assets/Neunity/App/SmartContract.cs" relfile="Assets/Neunity/App/SmartContract.cs" line="213" column="1" />
+      <Breakpoint file="/Users/danielpan/Projects/BlockhainProjects/Essential/Neunity/Samples/SampleUnity/Assets/Neunity/App/SmartContract.cs" relfile="Assets/Neunity/App/SmartContract.cs" line="201" column="1" />
+      <Breakpoint file="/Users/danielpan/Projects/BlockhainProjects/Essential/Neunity/Samples/SampleUnity/Assets/Neunity/App/SmartContract.cs" relfile="Assets/Neunity/App/SmartContract.cs" line="174" column="1" />
+      <Breakpoint file="/Users/danielpan/Projects/BlockhainProjects/Essential/Neunity/Samples/SampleUnity/Assets/Scripts/ManagerCards.cs" relfile="Assets/Scripts/ManagerCards.cs" line="73" column="1" />
+      <Breakpoint file="/Users/danielpan/Projects/BlockhainProjects/Essential/Neunity/Samples/SampleUnity/Assets/Neunity/App/SmartContract.cs" relfile="Assets/Neunity/App/SmartContract.cs" line="243" column="1" />
+      <Breakpoint file="/Users/danielpan/Projects/BlockhainProjects/Essential/Neunity/Samples/SampleUnity/Assets/Scripts/ManagerCards.cs" relfile="Assets/Scripts/ManagerCards.cs" line="52" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>

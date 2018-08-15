@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neunity", "Neunity\Neunity.csproj", "{92CB1DC3-6F3F-4FA3-971F-83D128376EDA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neunity", "Neunity\Neunity.csproj", "{BAA31CDA-BABD-4C7A-B992-54C1032A4D9F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,9 +9,9 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{92CB1DC3-6F3F-4FA3-971F-83D128376EDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{92CB1DC3-6F3F-4FA3-971F-83D128376EDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{92CB1DC3-6F3F-4FA3-971F-83D128376EDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{92CB1DC3-6F3F-4FA3-971F-83D128376EDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAA31CDA-BABD-4C7A-B992-54C1032A4D9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAA31CDA-BABD-4C7A-B992-54C1032A4D9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAA31CDA-BABD-4C7A-B992-54C1032A4D9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAA31CDA-BABD-4C7A-B992-54C1032A4D9F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
