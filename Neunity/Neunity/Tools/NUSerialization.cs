@@ -96,14 +96,10 @@ namespace Neunity.Tools
             }
 
             byte[] remBA = Op.BigInt2Bytes(rem);
-            if(rem < 128 || rem >=256){
-                return Op.JoinByteArray(r, remBA, body);
-                //return Op.JoinTwoByteArray(Op.JoinTwoByteArray(r, remBA, body));
-
+            if( rem >=128 && rem <256){
+                remBA = Op.SubBytes(remBA, 0, 1);
             }
-            else{
-                return Op.JoinByteArray(r, Op.SubBytes(remBA,0,1), body);
-            }
+            return Op.JoinByteArray(r, remBA, body);
         }
 
 
