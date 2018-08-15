@@ -1,0 +1,11 @@
+/Users/danielpan/Projects/BlockhainProjects/Essential/Neunity/Samples/SampleUnity/SmartContract/SmartContract/obj/Debug/netstandard2.0/SmartContract.csproj.CoreCompileInputs.cache
+/Users/danielpan/Projects/BlockhainProjects/Essential/Neunity/Samples/SampleUnity/SmartContract/SmartContract/obj/Debug/netstandard2.0/SmartContract.AssemblyInfoInputs.cache
+/Users/danielpan/Projects/BlockhainProjects/Essential/Neunity/Samples/SampleUnity/SmartContract/SmartContract/obj/Debug/netstandard2.0/SmartContract.AssemblyInfo.cs
+/Users/danielpan/Projects/BlockhainProjects/Essential/Neunity/Samples/SampleUnity/SmartContract/SmartContract/bin/Debug/netstandard2.0/SmartContract.deps.json
+/Users/danielpan/Projects/BlockhainProjects/Essential/Neunity/Samples/SampleUnity/SmartContract/SmartContract/bin/Debug/netstandard2.0/SmartContract.dll
+/Users/danielpan/Projects/BlockhainProjects/Essential/Neunity/Samples/SampleUnity/SmartContract/SmartContract/bin/Debug/netstandard2.0/SmartContract.pdb
+/Users/danielpan/Projects/BlockhainProjects/Essential/Neunity/Samples/SampleUnity/SmartContract/SmartContract/bin/Debug/netstandard2.0/Neo.SmartContract.Framework.dll
+/Users/danielpan/Projects/BlockhainProjects/Essential/Neunity/Samples/SampleUnity/SmartContract/SmartContract/bin/Debug/netstandard2.0/Neo.SmartContract.Framework.pdb
+/Users/danielpan/Projects/BlockhainProjects/Essential/Neunity/Samples/SampleUnity/SmartContract/SmartContract/obj/Debug/netstandard2.0/SmartContract.dll
+/Users/danielpan/Projects/BlockhainProjects/Essential/Neunity/Samples/SampleUnity/SmartContract/SmartContract/obj/Debug/netstandard2.0/SmartContract.pdb
+/Users/danielpan/Projects/BlockhainProjects/Essential/Neunity/Samples/SampleUnity/SmartContract/SmartContract/obj/Debug/netstandard2.0/SmartContract.csprojResolveAssemblyReference.cache
