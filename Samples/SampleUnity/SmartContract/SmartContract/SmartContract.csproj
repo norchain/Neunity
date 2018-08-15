@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <DefineConstants>NEOSC</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Neo.SmartContract.Framework">
+      <HintPath>..\..\..\..\..\..\3rdParty\NEO\neo-devpack-dotnet\Neo.SmartContract.Framework\bin\Debug\netstandard1.6\Neo.SmartContract.Framework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

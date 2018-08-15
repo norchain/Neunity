@@ -7,17 +7,12 @@ Material
 # =========================================== #
 # Unity Visual Studio / MonoDevelop generated #
 # =========================================== #
-Samples/SampleUnity/Library/
 Samples/SampleUnity/obj/
 Samples/SampleUnity/Temp/
 *.svd
 *.userprefs
-/*.csproj
-*.csproj
 *.pidb
 *.suo
-/*.sln
-*.sln
 *.user
 *.unityproj
 *.booproj
