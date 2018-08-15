@@ -2,6 +2,9 @@ Neunity/Neunity/bin
 Neunity/Neunity/obj
 Neunity/.vs
 Material
+Samples/CustomSample/.vs
+Samples/CustomSample/bin
+Samples/CustomSample/obj
 
 
 # =========================================== #
@@ -12,12 +15,8 @@ Samples/SampleUnity/obj/
 Samples/SampleUnity/Temp/
 *.svd
 *.userprefs
-/*.csproj
-*.csproj
 *.pidb
 *.suo
-/*.sln
-*.sln
 *.user
 *.unityproj
 *.booproj
