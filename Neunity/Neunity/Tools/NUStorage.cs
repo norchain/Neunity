@@ -36,11 +36,9 @@ namespace Neunity.Tools
             }
             else
             {
-				//byte[] r = Op.String2Bytes(elements[0]);
 				string r = "";
                 for (int i = 0; i < elements.Length; i++)
                 {
-					//r = Op.JoinTwoByteArray(r, Op.String2Bytes(elements[i]));
 					r = r + "/" + elements[i];
                 }
 				return Op.String2Bytes(r);

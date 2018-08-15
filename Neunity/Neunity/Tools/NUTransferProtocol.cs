@@ -19,7 +19,7 @@ using System.Numerics;
         <response> = [S<header>,<body>] 
     Header:
         NuSD definition: 
-        <header> = [<domain#1>,<code#1>,<desp>]
+        <header> = [<domain>,<code>,<desp>]
         
         - If <domain#1> == NuTP.SysDom, it's a system response. We have predefined HTTP-like 
         error codes in NuTP.Code. Follow these definitions can enhance the experience if the SC
@@ -29,7 +29,7 @@ using System.Numerics;
         NuSD doesn't have specific requirement for Body. It can be a NuSD segment, table, or any structure.
 
     NOTE: The implementation is actually using 
-        <header> = [S<domain#1>,S<code#1>,S<desp>]
+        <header> = [S<domain>,S<code>,S<desp>]
         <response> = [S<header>,S<body>]
         This is for the convience for now. Will do the optimization with the above NuSD standard in near future
     
@@ -39,7 +39,7 @@ namespace Neunity.Tools{
     
     
 	public static class NuTP{
-		public static readonly byte[] SysDom = { 0 };
+        public static readonly BigInteger SysDom = 0;
 
 
 		public static class Code
@@ -48,14 +48,14 @@ namespace Neunity.Tools{
             /** 
              * Refer to HTTP 200
             */
-            public static readonly byte[] Success = { 0 };
+            public static readonly BigInteger Success = 200;
 
             /** 
-             * The 40 status code, or Bad Request error, means the request that was sent to 
+             * The 400 status code, or Bad Request error, means the request that was sent to 
              * the SC has invalid syntax.
              * Refer to HTTP 400
             */
-            public static readonly byte[] BadRequest = { 40 };
+            public static readonly BigInteger BadRequest = 400;
 
             /**
              * The 41 status code, or an Unauthorized error, means that the user trying to 
@@ -63,50 +63,50 @@ namespace Neunity.Tools{
              * This means that the user must provide credentials to be able to view the protected resource.
              * Refer to HTTP 401
             */
-            public static readonly byte[] Unauthorized = { 41 };
+            public static readonly BigInteger Unauthorized = 401;
 
             /**
-             * The 43 status code, or a Forbidden error, means that the user made a valid request but the 
+             * The 403 status code, or a Forbidden error, means that the user made a valid request but the 
              * SC is refusing to serve the request, due to a lack of permission to access the requested 
              * resource. 
              * Refer to HTTP 403
             */
-            public static readonly byte[] Forbidden = { 43 };
+            public static readonly BigInteger Forbidden = 403;
 
             /**
-             * The 44 status code, or a Not Found error, means that the user is able to communicate with 
+             * The 404 status code, or a Not Found error, means that the user is able to communicate with 
              * the SC but it is unable to locate the requested operation.
              * Refer to HTTP 404
             */
-            public static readonly byte[] NotFound = { 44 };
+            public static readonly BigInteger NotFound = 404;
 
             /** 
-             * The 50 status code, or Internal Server Error, means that SC cannot process the request 
+             * The 500 status code, or Internal Server Error, means that SC cannot process the request 
              * for an unknown reason. Sometimes this code will appear when more specific 5x errors are 
              * more appropriate.
              * Refer to HTTP 500
             */
-            public static readonly byte[] InternalServerError = { 50 };
+            public static readonly BigInteger InternalServerError = 500;
 
             /**
-             * The 52 status code, or Bad Gateway error, means that the SC is a gateway or proxy SC,
+             * The 502 status code, or Bad Gateway error, means that the SC is a gateway or proxy SC,
              * and it is not receiving a valid response from the dynamic called SC that should actually 
              * fulfill the request. 
              * This is useful when a SC is dynamically invoking another SC but getting invalid response
-             * Refer to HTTP 500
+             * Refer to HTTP 502
             */
-            public static readonly byte[] BadGateway = { 52 };
+            public static readonly BigInteger BadGateway = 502;
 
 
             /** Reserved. No clear meaning for now ...
              * Refer to HTTP 503
             */
-            public static readonly byte[] ServiceUnavailable = { 53 };
+            public static readonly BigInteger ServiceUnavailable = 503;
 
             /** Reserved. No clear meaning for now ...
              * Refer to HTTP 504
             */
-            public static readonly byte[] GatewayTimeout = { 54 };
+            public static readonly BigInteger GatewayTimeout = 504;
 
         }
 
@@ -116,26 +116,26 @@ namespace Neunity.Tools{
             code = Code.Success
         };
 
-        public static Header HeaderWithCode(byte[] code) => new Header
+        public static Header HeaderWithCode(BigInteger code) => new Header
         {
             domain = SysDom,
             code = code
         };
 
-        public static Header HeaderWithDesp(byte[] code, byte[] description) => new Header
+        public static Header HeaderWithDesp(BigInteger code, string description) => new Header
         {
             domain = SysDom,
             code = code,
             description = description
         };
 
-        public static Header HeaderWithDomain( byte[] domain, byte[] code) => new Header
+        public static Header HeaderWithDomain( BigInteger domain, BigInteger code) => new Header
         {
             domain = domain,
             code = code
         };
 
-        public static Header HeaderWithDomainDesp(byte[] domain, byte[] code, byte[] description) => new Header
+        public static Header HeaderWithDomainDesp(BigInteger domain, BigInteger code, string description) => new Header
         {
             domain = domain,
             code = code,
@@ -147,23 +147,20 @@ namespace Neunity.Tools{
             header = header
         };
 
-        public static byte[] RespDataWithDetail(byte[] domain, byte[]code, byte[] description, byte[] body ) => NuSD.Seg(Header2Bytes(HeaderWithDomainDesp(domain, code, description)))
+        public static byte[] RespDataWithDetail(BigInteger domain, BigInteger code, string description, byte[] body ) => NuSD.Seg(Header2Bytes(HeaderWithDomainDesp(domain, code, description)))
                                                                                                                     .AddSeg(body);
 
-        public static byte[] RespDataWithCode(byte[] domain, byte[] code) => NuSD.Seg(Header2Bytes(HeaderWithDomainDesp(domain, code, Op.Void)));
+        public static byte[] RespDataWithCode(BigInteger domain, BigInteger code) => NuSD.Seg(Header2Bytes(HeaderWithDomainDesp(domain, code, "")));
 
-        public static byte[] RespDataSucWithBody(byte[] body) => RespDataWithDetail(SysDom, Code.Success, Op.Void, body);
+        public static byte[] RespDataSucWithBody(byte[] body) => RespDataWithDetail(SysDom, Code.Success, "", body);
 
-        public static byte[] RespDataSuccess() => RespDataWithDetail(SysDom, Code.Success, Op.Void, Op.Void);
+        public static byte[] RespDataSuccess() => RespDataWithDetail(SysDom, Code.Success, "", Op.Void);
   
 		public static Header Bytes2Header(byte[] data) => new Header
         {
-            domain = data.SplitTbl(0),
-            code = data.SplitTbl(1),
-            description = data.SplitTbl(2)
-            //domain = Op.SubBytes(data, 0, 1),
-            //code = Op.SubBytes(data, 1, 1),
-            //description = data.SplitBody(2, data.Length - 2)
+            domain = data.SplitTblInt(0),
+            code = data.SplitTblInt(1),
+            description = data.SplitTblStr(2)
         };
 
         //public static byte[] Header2Bytes(Header error) => SD.JoinSegs2Table(
@@ -171,9 +168,9 @@ namespace Neunity.Tools{
         //         Op.SubBytes(error.code, 0, 1),
         //SD.Seg(error.description)
         //);
-        public static byte[] Header2Bytes(Header header) => NuSD.Seg(header.domain)
-                                                                .AddSeg(header.code)
-                                                                .AddSeg(header.description);
+        public static byte[] Header2Bytes(Header header) => NuSD.SegInt(header.domain)
+                                                                .AddSegInt(header.code)
+                                                                .AddSegStr(header.description);
 
         public static Response Bytes2Response(byte[] data) => new Response
         {
@@ -192,9 +189,9 @@ namespace Neunity.Tools{
 
 		public class Header
         {
-            public byte[] domain;   // Only Allow 1 byte
-            public byte[] code;     //Only Allow 1 byte
-            public byte[] description;  //Can be multiple bytes
+            public BigInteger domain;   // Only Allow 1 byte
+            public BigInteger code;     //Only Allow 1 byte
+            public string description;  //Can be multiple bytes
         }
 
         public class Response

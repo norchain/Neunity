@@ -44,10 +44,10 @@
     <Compile Include="Tools\NUSerialization.cs" />
     <Compile Include="Tools\NUStorage.cs" />
     <Compile Include="Tools\NUTransferProtocol.cs" />
-    <Compile Include="App\SmartContract.cs" />
     <Compile Include="Adapters\NEO.cs" />
     <Compile Include="Adapters\SimpleJSON.cs" />
     <Compile Include="Adapters\Unity.cs" />
+    <Compile Include="Contract\SmartContract.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -117,15 +117,29 @@ namespace Neunity.Tools
 
         public static byte[] DesegFromTableFromData(byte[] data, int start)
         {
-            int i = 0;  //prefixLength -1
-            int segLen = 0;
-            while (data[i + start] == 255)
-            {
-                segLen += 255;
-                ++i;
+            if(start>= data.Length){
+                return Op.Void;
             }
-            segLen += data[i + start];
-            return Op.SubBytes(data, start + i + 1, segLen);
+            else{
+                int i = 0;  //prefixLength -1
+                int segLen = 0;
+                while (data[i + start] == 255)
+                {
+                    segLen += 255;
+                    ++i;
+                }
+                segLen += data[i + start];
+                if (segLen == 0)
+                {
+                    return Op.Void;
+                }
+                else
+                {
+                    return Op.SubBytes(data, start + i + 1, segLen);
+                }
+            }
+
+
         }
 
 
