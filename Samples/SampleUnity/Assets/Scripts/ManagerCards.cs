@@ -45,10 +45,11 @@ public class ManagerCards : MonoBehaviour {
         }
         else{
             Debug.LogError(response.header.code + ":" + response.header.description);
-
+            paras = new object[1];
+            paras[0] = Op.String2Bytes(id);
             NuTP.Response respGetCard = NuContract.InvokeWithResp("", "getCard", paras);
             if(respGetCard.header.code == NuTP.Code.Success){
-                return Contract.Bytes2Card(response.body);
+                return Contract.Bytes2Card(respGetCard.body);
             }
             else{
                 return null;
@@ -77,7 +78,9 @@ public class ManagerCards : MonoBehaviour {
             Debug.Log("New card's name:\t" + cardNew.name);
             Debug.Log("New card's birthBlock:\t" + cardNew.birthBlock);
         }
-
+        else{
+            Debug.Log("failed to merge card");
+        }
     }
 
     void TestLocalStorage() {

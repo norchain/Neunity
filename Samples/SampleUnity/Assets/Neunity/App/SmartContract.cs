@@ -55,13 +55,19 @@ namespace Neunity.App
         // Customized Serialization for Card.
         // The Class Neunity.Tools.NuSD Manages Serialization/Deserialization.
         // NuSD: <Card> = [S<id>,S<name>,S<birthBlock>,S<level>,S<ownerId>,S<isFighting#1>]
-        public static byte[] Card2Bytes(Card card) => NuSD
-            .Seg(card.id)
-            .AddSegStr(card.name)
-            .AddSegInt(card.birthBlock)
-            .AddSegInt(card.level)
-            .AddSeg(card.ownerId)
-            .AddSegBool(card.isLive);
+        public static byte[] Card2Bytes(Card card){
+            if (card == null){
+                return Op.Void;
+            }else{
+                return NuSD.Seg(card.id)
+                           .AddSegStr(card.name)
+                           .AddSegInt(card.birthBlock)
+                           .AddSegInt(card.level)
+                           .AddSeg(card.ownerId)
+                           .AddSegBool(card.isLive);
+            }
+
+        } 
 
 
         // Customized Deserialization for Card
@@ -149,12 +155,15 @@ namespace Neunity.App
             Card cardOrig = ReadCard(cardId);
 
             if(cardOrig == null){
+                byte[] newLvData = Hash256(Op.JoinTwoByteArray(ownerId, Op.BigInt2Bytes(Blockchain.GetHeight())));
+
+                                           
                 Card card = new Card
                 {
                     id = cardId,
                     name = name,
                     birthBlock = Blockchain.GetHeight(),
-                    level = Op.Bytes2BigInt(Hash256(Op.JoinTwoByteArray(ownerId, Op.BigInt2Bytes(Blockchain.GetHeight())))) % 3,
+                    level = Op.Bytes2BigInt(newLvData) % 3,
                     ownerId = ownerId,
                     isLive =true
                 };
@@ -188,11 +197,12 @@ namespace Neunity.App
                 return NuTP.RespDataWithCode(Error.Dom, Error.DiffOwner);
             }
             if (card1.level >= card2.level){
+                BigInteger newLevel = card1.level + card2.level;
                 Card newCard = new Card
                 {
                     id = Hash256(Op.JoinTwoByteArray(card1.id, card2.id)),
                     name = name,
-                    level = card1.level + card2.level,
+                    level = newLevel,
                     birthBlock = Blockchain.GetHeight(),
                     ownerId = card1.ownerId,
                     isLive = true
@@ -229,8 +239,9 @@ namespace Neunity.App
             if (operation == "getCard")
             {   //Used Internally Only
                 byte[] cardId = (byte[])args[0];
-
-                return NuTP.RespDataSucWithBody(Card2Bytes(ReadCard(cardId)));
+                Card card = ReadCard(cardId);
+                byte[] cardData = Card2Bytes(card);
+                return NuTP.RespDataSucWithBody(cardData);
             }
 
             if (operation == "cardMerge")
