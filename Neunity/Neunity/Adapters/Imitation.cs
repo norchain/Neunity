@@ -53,63 +53,7 @@ namespace Neunity.Adapters.Unity
         }
     }
 
-    public static class Funcs
-    {
-        static Random s_random = new Random();
 
-        public static bool VerifySign(byte[] signature, byte[] address)
-        {
-            return true;
-        }
-        public static byte[] Hash(byte[] origin)
-        {
-            HashAlgorithm md5 = new MD5CryptoServiceProvider();
-            return md5.ComputeHash(origin);
-        }
-
-        public static byte[] SHA(byte[] orginal)
-        {
-            HashAlgorithm sha = new SHA256Managed();
-            return sha.ComputeHash(orginal);
-        }
-
-        public static void SetRandomSeed(byte[] seed)
-        {
-            int seedValue = 0;
-            for (int i = 0; i < seed.Length; i++)
-            {
-                seedValue = seedValue + seed[i];
-            }
-            s_random = new Random(seedValue);
-        }
-
-        //maxValue is the excluded bound top value
-        public static BigInteger Random(BigInteger maxValue)
-        {
-            if (maxValue <= 0)
-            {
-                return new BigInteger(s_random.Next());
-            }
-            else
-            {
-                return new BigInteger(s_random.Next() % (int)maxValue);
-            }
-        }
-
-        public static byte[] Rand(byte[] seed, int bytes)
-        {
-            byte[] r = Hash(seed);
-            if (bytes <= r.Length)
-            {
-                return Op.SubBytes(r, 0, bytes);
-            }
-            else
-            {
-                return r;
-            }
-        }
-
-    }
 
 
     public class StorageContext { }
