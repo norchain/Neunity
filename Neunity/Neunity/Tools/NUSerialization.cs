@@ -47,10 +47,11 @@ namespace Neunity.Tools
         }
 
         public static int SegLenOfFirstSegFromTable(byte[] table) => SegLenOfFirstSegFromData(table, 0);
-        public static int SegLenOfFirstSegFromData(byte[] data, int segStartIndex) {
+        public static int SegLenOfFirstSegFromData(byte[] data, int segStartIndex)
+        {
             int prelen = PreLenOfFirstSegFromData(data, segStartIndex);
             return prelen + (prelen - 1) * 255 + data[prelen + segStartIndex - 1];
-        } 
+        }
 
 
         #endregion
@@ -96,7 +97,8 @@ namespace Neunity.Tools
             }
 
             byte[] remBA = Op.BigInt2Bytes(rem);
-            if( rem >=128 && rem <256){
+            if (rem >= 128 && rem < 256)
+            {
                 remBA = Op.SubBytes(remBA, 0, 1);
             }
             return Op.JoinByteArray(r, remBA, body);
@@ -121,10 +123,12 @@ namespace Neunity.Tools
 
         public static byte[] DesegFromTableFromData(byte[] data, int start)
         {
-            if(start>= data.Length){
+            if (start >= data.Length)
+            {
                 return Op.Void;
             }
-            else{
+            else
+            {
                 int i = 0;  //prefixLength -1
                 int segLen = 0;
                 while (data[i + start] == 255)
@@ -186,7 +190,7 @@ namespace Neunity.Tools
         public static bool SplitSegBool(this byte[] data, int startID) => Op.Bytes2Bool(DesegFromTableFromData(data, startID));
         public static string SplitSegStr(this byte[] data, int startID) => Op.Bytes2String(DesegFromTableFromData(data, startID));
 
-        public static byte[] SplitBody(this byte[] data, int startID, int length) => Op.SubBytes(data,startID,length);
+        public static byte[] SplitBody(this byte[] data, int startID, int length) => Op.SubBytes(data, startID, length);
 
         public static byte[] SplitTbl(this byte[] table, int index) => DesegWithIdFromData(table, 0, index);
         public static BigInteger SplitTblInt(this byte[] table, int index) => Op.Bytes2BigInt(DesegWithIdFromData(table, 0, index));

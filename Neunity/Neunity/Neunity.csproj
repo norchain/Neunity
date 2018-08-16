@@ -48,6 +48,7 @@
     <Compile Include="Adapters\SimpleJSON.cs" />
     <Compile Include="Adapters\Unity.cs" />
     <Compile Include="Contract\SmartContract.cs" />
+    <Compile Include="Adapters\Imitation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
