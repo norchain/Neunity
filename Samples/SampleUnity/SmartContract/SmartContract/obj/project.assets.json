@@ -176,23 +176,23 @@
     ]
   },
   "packageFolders": {
-    "/Users/danielpan/.nuget/packages/": {},
+    "/Users/liqingpan/.nuget/packages/": {},
     "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/danielpan/Projects/BlockhainProjects/Essential/Neunity/Samples/SampleUnity/SmartContract/SmartContract/SmartContract.csproj",
+      "projectUniqueName": "/Users/liqingpan/DL/Neunity/Samples/SampleUnity/SmartContract/SmartContract/SmartContract.csproj",
       "projectName": "SmartContract",
-      "projectPath": "/Users/danielpan/Projects/BlockhainProjects/Essential/Neunity/Samples/SampleUnity/SmartContract/SmartContract/SmartContract.csproj",
-      "packagesPath": "/Users/danielpan/.nuget/packages/",
-      "outputPath": "/Users/danielpan/Projects/BlockhainProjects/Essential/Neunity/Samples/SampleUnity/SmartContract/SmartContract/obj",
+      "projectPath": "/Users/liqingpan/DL/Neunity/Samples/SampleUnity/SmartContract/SmartContract/SmartContract.csproj",
+      "packagesPath": "/Users/liqingpan/.nuget/packages/",
+      "outputPath": "/Users/liqingpan/DL/Neunity/Samples/SampleUnity/SmartContract/SmartContract/obj",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/danielpan/.config/NuGet/NuGet.Config"
+        "/Users/liqingpan/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.0"

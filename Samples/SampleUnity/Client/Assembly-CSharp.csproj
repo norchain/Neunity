@@ -60,25 +60,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Neunity\Adapters\Imitation.cs" />
     <Compile Include="Assets\Neunity\Adapters\SimpleJSON.cs" />
     <Compile Include="Assets\Neunity\Adapters\Unity.cs" />
     <Compile Include="Assets\Neunity\App\NUService.cs" />
-    <Compile Include="Assets\Neunity\Contract\SmartContract.cs" />
     <Compile Include="Assets\Neunity\Tools\NUSerialization.cs" />
     <Compile Include="Assets\Neunity\Tools\NUStorage.cs" />
     <Compile Include="Assets\Neunity\Tools\NUTransferProtocol.cs" />
     <Compile Include="Assets\Scripts\ManagerCards.cs" />
+    <Compile Include="Assets\Scripts\SmartContract\SmartContract.cs" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>/Users/danielpan/Projects/BlockhainProjects/Essential/Neunity/Samples/SampleUnity/Client/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>/Users/liqingpan/DL/Neunity/Samples/SampleUnity/Client/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>/Users/danielpan/Projects/BlockhainProjects/Essential/Neunity/Samples/SampleUnity/Client/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>/Users/liqingpan/DL/Neunity/Samples/SampleUnity/Client/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>/Users/danielpan/Projects/BlockhainProjects/Essential/Neunity/Samples/SampleUnity/Client/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>/Users/liqingpan/DL/Neunity/Samples/SampleUnity/Client/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>/Users/danielpan/Projects/BlockhainProjects/Essential/Neunity/Samples/SampleUnity/Client/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>/Users/liqingpan/DL/Neunity/Samples/SampleUnity/Client/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -279,19 +280,19 @@
       <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Neo.Lux">
-      <HintPath>/Users/danielpan/Projects/BlockhainProjects/Essential/Neunity/Samples/SampleUnity/Client/Assets/Plugins/Neo.Lux.dll</HintPath>
+      <HintPath>/Users/liqingpan/DL/Neunity/Samples/SampleUnity/Client/Assets/Plugins/Neo.Lux.dll</HintPath>
     </Reference>
     <Reference Include="LunarParser">
-      <HintPath>/Users/danielpan/Projects/BlockhainProjects/Essential/Neunity/Samples/SampleUnity/Client/Assets/Plugins/LunarParser.dll</HintPath>
+      <HintPath>/Users/liqingpan/DL/Neunity/Samples/SampleUnity/Client/Assets/Plugins/LunarParser.dll</HintPath>
     </Reference>
     <Reference Include="BouncyCastle.Crypto">
-      <HintPath>/Users/danielpan/Projects/BlockhainProjects/Essential/Neunity/Samples/SampleUnity/Client/Assets/Plugins/BouncyCastle.Crypto.dll</HintPath>
+      <HintPath>/Users/liqingpan/DL/Neunity/Samples/SampleUnity/Client/Assets/Plugins/BouncyCastle.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
-      <HintPath>/Users/danielpan/Library/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
+      <HintPath>/Users/liqingpan/Library/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
-      <HintPath>/Users/danielpan/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
+      <HintPath>/Users/liqingpan/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

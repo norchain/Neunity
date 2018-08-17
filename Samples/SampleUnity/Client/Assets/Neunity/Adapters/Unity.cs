@@ -9,7 +9,7 @@ using System.Security.Cryptography;
 
 namespace Neunity.Adapters.Unity
 {
-    public static class Op 
+    public static class Op
     {
 
         public static byte[] Void = new byte[0];
@@ -36,6 +36,8 @@ namespace Neunity.Adapters.Unity
         public static byte[] Byte2Bytes(byte b) => new byte[1] { b };
 
         public static byte Int2Byte(int i) => (byte)i;
+        public static int Byte2Int(byte b) => (int)b; //Also for NEO
+        public static BigInteger Byte2BigInt(byte b) => (int)b; //Also for NEO
 
         //public static int BigInt2Int(BigInteger i) => (int)i;
 
@@ -83,7 +85,7 @@ namespace Neunity.Adapters.Unity
 
         public static bool Or(bool left, bool right) => left || right;
 
- 
+
         public static void Log(string str)
         {
             //Debug.Log(str);
@@ -97,128 +99,7 @@ namespace Neunity.Adapters.Unity
         }
     }
 
-    public class SmartContract { 
-		public static bool VerifySignature(byte[]signature, byte[] address){
-			return true;
-		}
-        protected static byte[] Hash256(byte[] orig){
-            HashAlgorithm sha = new SHA256Managed();
-            return sha.ComputeHash(orig); 
-        }
-	}
 
-    public static class Extensions
-    {
-        public static byte[] ToScriptHash(this string address) => Op.String2Bytes(address);
-    }
-
-    public enum TriggerType : byte
-    {
-        Verification,
-        VerificationR,
-        Application = 16,
-        ApplicationR
-    }
-
-    public static class Runtime
-    {
-        public static uint Time = 0;
-        public static TriggerType Trigger = TriggerType.Application;
-        public static bool CheckWitness(byte[] hashOrPubkey) => true;
-
-        public static void Log(string message) { }
-        public static void Notify(params object[] state) { }
-    }
-
-    public static class Blockchain
-    {
-        public static uint GetHeight()
-        {
-            return 10000;
-        }
-    }
-    /*
-    public static class Funcs {
-        static Random s_random = new Random();
-
-        //public static bool VerifySign(byte[] signature, byte[] address) {
-        //    return true;
-        //}
-        public static byte[] Hash(byte[] origin) {
-            HashAlgorithm md5 = new MD5CryptoServiceProvider();
-            return md5.ComputeHash(origin);
-        }
-
-        public static byte[] SHA(byte[] orginal){
-            HashAlgorithm sha = new SHA256Managed();
-            return sha.ComputeHash(orginal);
-        }
-
-        public static void SetRandomSeed(byte[] seed) {
-            int seedValue = 0;
-            for(int i = 0; i < seed.Length; i++) {
-                seedValue = seedValue + seed[i];
-            }
-            s_random = new Random(seedValue);
-        }
-
-        //maxValue is the excluded bound top value
-        //public static BigInteger Random(BigInteger maxValue) {
-        //    if(maxValue <= 0) {
-        //        return new BigInteger(s_random.Next());
-        //    } else {
-        //        return new BigInteger(s_random.Next() % (int)maxValue);
-        //    }
-        //}
-
-        //public static byte[] Rand(byte[] seed, int bytes)
-        //{
-        //    byte[] r = Hash(seed);
-        //    if(bytes <= r.Length){
-        //        return Op.SubBytes(r, 0, bytes);
-        //    }
-        //    else{
-        //        return r;
-        //    }
-        //}
-
-
-    }
-*/
-
-
-    public class StorageContext { }
-
-
-    public static class NeUtil {
-        public static string ByteToHex(this byte[] data) {
-            string hex = BitConverter.ToString(data).Replace("-", "").ToLower();
-            return hex;
-        }
-
-        public static string ToHexString(this IEnumerable<byte> value) {
-            StringBuilder sb = new StringBuilder();
-            foreach(byte b in value)
-                sb.AppendFormat("{0:x2}", b);
-            return sb.ToString();
-        }
-
-        public static byte[] HexToBytes(this string value) {
-            if(value == null || value.Length == 0)
-                return new byte[0];
-            if(value.Length % 2 == 1)
-                throw new FormatException();
-
-            if(value.StartsWith("0x")) {
-                value = value.Substring(2);
-            }
-
-            byte[] result = new byte[value.Length / 2];
-            for(int i = 0; i < result.Length; i++)
-                result[i] = byte.Parse(value.Substring(i * 2, 2), NumberStyles.AllowHexSpecifier);
-            return result;
-        }
-    }
 
     public class Storage
     {
@@ -265,17 +146,24 @@ namespace Neunity.Adapters.Unity
 
 
             string strKey = key.ByteToHex();
-            if(s_jsonNode == null) {
+            if (s_jsonNode == null)
+            {
                 string strContent = LoadData();
-                if(strContent.Length > 0) {
+                if (strContent.Length > 0)
+                {
                     s_jsonNode = JSONNode.Parse(strContent);
-                } else { 
+                }
+                else
+                {
                     s_jsonNode = JSONNode.Parse("{}");
                 }
             }
-            if(s_jsonNode[strKey] == null) {
+            if (s_jsonNode[strKey] == null)
+            {
                 return new byte[0];
-            } else {
+            }
+            else
+            {
                 string strHexValue = s_jsonNode[strKey].Value;
                 return strHexValue.HexToBytes();
             }
@@ -288,7 +176,8 @@ namespace Neunity.Adapters.Unity
             string strKey = key.ByteToHex();
             string strValue = value.ByteToHex();
 
-            if(s_jsonNode == null){
+            if (s_jsonNode == null)
+            {
                 s_jsonNode = JSONNode.Parse("{}");
             }
             s_jsonNode[strKey] = strValue;
@@ -302,7 +191,8 @@ namespace Neunity.Adapters.Unity
 
             string strKey = key.ByteToHex();
 
-            if(s_jsonNode == null) {
+            if (s_jsonNode == null)
+            {
                 s_jsonNode = JSONNode.Parse("{}");
                 return;
             }
@@ -311,20 +201,25 @@ namespace Neunity.Adapters.Unity
             SaveData(strContent);
         }
 
-        public static void SaveData(string strContent) {
+        public static void SaveData(string strContent)
+        {
             StreamWriter streamWriter = File.CreateText(Op.RECORD_DATA_FILE);
             streamWriter.Write(strContent);
             streamWriter.Close();
         }
 
-        public static string LoadData() {
+        public static string LoadData()
+        {
 
-            if(File.Exists(Op.RECORD_DATA_FILE)) {
+            if (File.Exists(Op.RECORD_DATA_FILE))
+            {
                 StreamReader streamReader = File.OpenText(Op.RECORD_DATA_FILE);
                 string strContent = streamReader.ReadToEnd();
                 streamReader.Close();
                 return strContent;
-            } else {
+            }
+            else
+            {
                 return "{}";
             }
 

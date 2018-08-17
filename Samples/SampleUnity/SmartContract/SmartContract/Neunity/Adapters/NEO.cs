@@ -96,7 +96,12 @@ namespace Neunity.Adapters.NEO
 
         public static void SetStoragePath(string path)
         {
+            
         }
+
+        //public static byte[] RandomSeed(){
+        //    Blockchain.GetTransaction()
+        //}
     }
 
 }
