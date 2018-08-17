@@ -1,5 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="SmartContract/Neunity/Adapters/NEO.cs">
+    <Files>
+      <File FileName="SmartContract/Scripts/SmartContract/SmartContract.cs" Line="171" Column="38" />
+      <File FileName="SmartContract/Neunity/Tools/NUSerialization.cs" Line="170" Column="14" />
+      <File FileName="SmartContract/Neunity/Tools/NUTransferProtocol.cs" Line="161" Column="10" />
+      <File FileName="SmartContract/Neunity/Adapters/NEO.cs" Line="94" Column="23" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

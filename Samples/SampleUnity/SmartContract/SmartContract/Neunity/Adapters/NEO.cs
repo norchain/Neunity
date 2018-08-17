@@ -11,7 +11,7 @@ namespace Neunity.Adapters.NEO
 {
 	public static class Op
     {
-        public static byte[] Void = new byte[0];
+        public static byte[] Void() => new byte[0];
 
 		public static BigInteger Bytes2BigInt(byte[] data)
         {
@@ -90,9 +90,10 @@ namespace Neunity.Adapters.NEO
         }
 
 
-		public static void Log(string str){
-			Runtime.Notify(str);
+        public static void Log(params object[] ba){
+			Runtime.Notify(ba);
 		}
+
 
         public static void SetStoragePath(string path)
         {

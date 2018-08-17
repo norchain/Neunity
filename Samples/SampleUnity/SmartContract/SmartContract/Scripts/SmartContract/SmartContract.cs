@@ -57,7 +57,7 @@ namespace Neunity.App
         // NuSD: <Card> = [S<id>,S<name>,S<birthBlock>,S<level>,S<ownerId>,S<isFighting#1>]
         public static byte[] Card2Bytes(Card card){
             if (card == null){
-                return Op.Void;
+                return Op.Void();
             }else{
                 return NuSD.Seg(card.id)
                            .AddSegStr(card.name)
@@ -91,7 +91,7 @@ namespace Neunity.App
         } 
 
         public static byte[] User2Bytes(User user){
-            byte[] dataCardIds = Op.Void;
+            byte[] dataCardIds = Op.Void();
             if (user.cards.Length > 0)
             {
                 for (int i = 0; i < user.cards.Length; i++)
@@ -185,12 +185,12 @@ namespace Neunity.App
         {
             Card card1 = ReadCard(cardID1);
             if(card1 == null){
-                return NuTP.RespDataWithDetail(Error.Dom,Error.NoExist,Op.Bytes2String(cardID1),Op.Void);
+                return NuTP.RespDataWithDetail(Error.Dom,Error.NoExist,Op.Bytes2String(cardID1),Op.Void());
             }
             Card card2 = ReadCard(cardID2);
             if (card2 == null)
             {
-                return NuTP.RespDataWithDetail(Error.Dom, Error.NoExist, Op.Bytes2String(cardID2), Op.Void);
+                return NuTP.RespDataWithDetail(Error.Dom, Error.NoExist, Op.Bytes2String(cardID2), Op.Void());
             }
 
             if ( Op.Bytes2BigInt(card1.ownerId) != Op.Bytes2BigInt(card2.ownerId)){

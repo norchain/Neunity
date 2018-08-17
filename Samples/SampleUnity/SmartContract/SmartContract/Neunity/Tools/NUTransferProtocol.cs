@@ -110,7 +110,7 @@ namespace Neunity.Tools{
 
         }
 
-        public static readonly Header headerSuccess = new Header
+        public static Header headerSuccess => new Header
         {
             domain = SysDom,
             code = Code.Success
@@ -154,8 +154,9 @@ namespace Neunity.Tools{
 
         public static byte[] RespDataSucWithBody(byte[] body) => RespDataWithDetail(SysDom, Code.Success, "", body);
 
-        public static byte[] RespDataSuccess() => RespDataWithDetail(SysDom, Code.Success, "", Op.Void);
+        public static byte[] RespDataSuccess() => RespDataWithDetail(SysDom, Code.Success, "", Op.Void());
   
+
 		public static Header Bytes2Header(byte[] data) => new Header
         {
             domain = data.SplitTblInt(0),
@@ -199,5 +200,6 @@ namespace Neunity.Tools{
             public Header header;
             public byte[] body;
         }
+
 	}   
 }
