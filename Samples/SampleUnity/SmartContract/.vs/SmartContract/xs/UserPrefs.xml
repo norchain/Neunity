@@ -1,10 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="SmartContract/Neunity/Adapters/NEO.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SmartContract/Neunity/Tools/NUSerialization.cs">
     <Files>
-      <File FileName="SmartContract/Scripts/SmartContract/SmartContract.cs" Line="171" Column="38" />
-      <File FileName="SmartContract/Neunity/Tools/NUSerialization.cs" Line="170" Column="14" />
-      <File FileName="SmartContract/Neunity/Tools/NUTransferProtocol.cs" Line="161" Column="10" />
-      <File FileName="SmartContract/Neunity/Adapters/NEO.cs" Line="94" Column="23" />
+      <File FileName="SmartContract/Scripts/SmartContract/SmartContract.cs" Line="21" Column="33" />
+      <File FileName="SmartContract/Neunity/Tools/NUSerialization.cs" Line="176" Column="25" />
+      <File FileName="SmartContract/Neunity/Tools/NUTransferProtocol.cs" Line="174" Column="44" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

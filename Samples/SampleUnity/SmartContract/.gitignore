@@ -1,1 +1,4 @@
 .vs/
+SmartContract/.vs
+SmartContract/bin/
+SmartContract/bin/Debug

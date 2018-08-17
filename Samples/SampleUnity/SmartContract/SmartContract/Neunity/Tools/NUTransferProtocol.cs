@@ -164,27 +164,17 @@ namespace Neunity.Tools{
             description = data.SplitTblStr(2)
         };
 
-        //public static byte[] Header2Bytes(Header error) => SD.JoinSegs2Table(
-        //         Op.SubBytes(error.domain, 0, 1),
-        //         Op.SubBytes(error.code, 0, 1),
-        //SD.Seg(error.description)
-        //);
+
         public static byte[] Header2Bytes(Header header) => NuSD.SegInt(header.domain)
                                                                 .AddSegInt(header.code)
                                                                 .AddSegStr(header.description);
 
         public static Response Bytes2Response(byte[] data) => new Response
         {
-			//header = Bytes2Header(SD.DesegWithIdFromTable(data, 0)),
             header = Bytes2Header(data.SplitTbl(0)),
             body = data.SplitTbl(1)
-            //body = SD.DesegWithIdFromTable(data, 1)
         };
 
-        //     public static byte[] Response2Bytes(Response response) => SD.JoinSegs2Table(
-        //Header2Bytes(response.header),
-        //    SD.Seg(response.body)
-        //);
         public static byte[] Response2Bytes(Response response) => NuSD.Seg(Header2Bytes(response.header))
                                                                     .AddSeg(response.body);
 
