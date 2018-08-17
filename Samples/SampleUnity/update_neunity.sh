@@ -6,6 +6,7 @@ PathApp="/Neunity/App"
 PathContract="/Neunity/Contract"
 
 source path.config
+source
 
 echo
 echo "----------------------------------------"

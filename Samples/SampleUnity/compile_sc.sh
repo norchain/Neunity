@@ -40,12 +40,13 @@ echo "Compiling Contract..."
 cd $NeunityPathDestSLN
 dotnet msbuild
 cd ..
-dotnet ~/Projects/BlockhainProjects/3rdParty/NEO/neo-compiler/neon/bin/Debug/netcoreapp2.0/neon.dll ./SmartContract/SmartContract/bin/Debug/netstandard2.0/SmartContract.dll
-cp ./SmartContract/SmartContract/bin/Debug/netstandard2.0/SmartContract.avm ~/Desktop
+# eval ${"dotnet $NeonPath/neon.dll ${NeunityPathDest}${PathDLL}/SmartContract.dll"}
+# dotnet $NeonPath/neon.dll ${NeunityPathDest}${PathDLL}/SmartContract.dll
+# cp ./SmartContract/SmartContract/bin/Debug/netstandard2.0/SmartContract.avm ~/Desktop
 # dotnet ${NeonPath}/neon.dll "${NeunityPathDest}${PathDLL}/SmartContract.dll"
 # dotnet neon.dll $NeunityPathDest$PathDLL
 # cp $NeunityPathClientDest/$PathDLL/SmartContract.avm $ContractDest
 
 echo
-echo "DONE. Please check '${ContractDest}/SmartContract.avm'"
+# echo "DONE. Please check '${ContractDest}/SmartContract.avm'"
 echo
