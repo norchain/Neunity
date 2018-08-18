@@ -25,10 +25,10 @@ In General, Neunity provides a 3-layer structure demostrated in the following fi
 
 Please refer to following articles to further understand how to utilize Neunity.
 
-1. How to use Visual Studio to debug NEO SC(C#): Intoduction. 
-2. NuSD: Neunity Serialization.
-3. NuTP: Neunity Transfer Protocol, a HTTP-like Application layer communication protocol between NEO smart contract and client Dapp.
-4. Other features: Storage, Continous Integration, etc.
+1. How to use Visual Studio to debug NEO SC(C#): [Introduction](https://github.com/norchain/Neunity/blob/master/NeunityVisualStudioIntegration.md). 
+2. NuSD: Neunity Serialization.[Introduction](https://github.com/norchain/Neunity/blob/master/NeunityBytesSeralization.md)
+3. NuTP: Neunity Transfer Protocol, a HTTP-like Application layer communication protocol between NEO smart contract and client Dapp.[Introduction](https://github.com/norchain/Neunity/blob/master/NeunityTransferProtocol.md)
+4. Other features: [Storage](https://github.com/norchain/Neunity/blob/master/NeunityStorageManagement.md), [Continous Integration](https://github.com/norchain/Neunity/blob/master/NeunityContinuousIntegration.md), etc.
 
 **Please provide more failure testcases and suggest more functions and tactics. With the community's help, we can make it more powerful.** 
 
