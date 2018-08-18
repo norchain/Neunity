@@ -11,28 +11,15 @@ namespace Neunity.Adapters.NEO
 {
 	public static class Op
     {
-        public static byte[] Void = new byte[0];
+        public static byte[] Void() => new byte[0];
 
-		public static BigInteger Bytes2BigInt(byte[] data)
-        {
-            if (data.Length == 0) return 0;
-            return data.AsBigInteger();
-        }
+        public static BigInteger Bytes2BigInt(byte[] data) => data.AsBigInteger();
 
-		public static byte[] BigInt2Bytes(BigInteger bigInteger)
-        {
-            if (bigInteger == 0) return new byte[1] { 0 };
-            return bigInteger.AsByteArray();
-        }
+        public static byte[] BigInt2Bytes(BigInteger bigInteger) => bigInteger.AsByteArray();
 
 
 
-		public static byte[] String2Bytes(String str)
-        {
-            if (str.Length == 0) return "\0".AsByteArray();
-
-            return str.AsByteArray();
-        }
+        public static byte[] String2Bytes(String str) => str.AsByteArray();
 
 		public static String Bytes2String(byte[] data) => data.AsString();
 
@@ -90,9 +77,10 @@ namespace Neunity.Adapters.NEO
         }
 
 
-		public static void Log(string str){
-			Runtime.Notify(str);
+        public static void Log(params object[] ba){
+			Runtime.Notify(ba);
 		}
+
 
         public static void SetStoragePath(string path)
         {

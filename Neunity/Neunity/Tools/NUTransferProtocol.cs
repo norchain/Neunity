@@ -110,7 +110,7 @@ namespace Neunity.Tools{
 
         }
 
-        public static readonly Header headerSuccess = new Header
+        public static Header headerSuccess => new Header
         {
             domain = SysDom,
             code = Code.Success
@@ -154,8 +154,9 @@ namespace Neunity.Tools{
 
         public static byte[] RespDataSucWithBody(byte[] body) => RespDataWithDetail(SysDom, Code.Success, "", body);
 
-        public static byte[] RespDataSuccess() => RespDataWithDetail(SysDom, Code.Success, "", Op.Void);
+        public static byte[] RespDataSuccess() => RespDataWithDetail(SysDom, Code.Success, "", Op.Void());
   
+
 		public static Header Bytes2Header(byte[] data) => new Header
         {
             domain = data.SplitTblInt(0),
@@ -163,27 +164,17 @@ namespace Neunity.Tools{
             description = data.SplitTblStr(2)
         };
 
-        //public static byte[] Header2Bytes(Header error) => SD.JoinSegs2Table(
-        //         Op.SubBytes(error.domain, 0, 1),
-        //         Op.SubBytes(error.code, 0, 1),
-        //SD.Seg(error.description)
-        //);
+
         public static byte[] Header2Bytes(Header header) => NuSD.SegInt(header.domain)
                                                                 .AddSegInt(header.code)
                                                                 .AddSegStr(header.description);
 
         public static Response Bytes2Response(byte[] data) => new Response
         {
-			//header = Bytes2Header(SD.DesegWithIdFromTable(data, 0)),
             header = Bytes2Header(data.SplitTbl(0)),
             body = data.SplitTbl(1)
-            //body = SD.DesegWithIdFromTable(data, 1)
         };
 
-        //     public static byte[] Response2Bytes(Response response) => SD.JoinSegs2Table(
-        //Header2Bytes(response.header),
-        //    SD.Seg(response.body)
-        //);
         public static byte[] Response2Bytes(Response response) => NuSD.Seg(Header2Bytes(response.header))
                                                                     .AddSeg(response.body);
 
@@ -199,5 +190,6 @@ namespace Neunity.Tools{
             public Header header;
             public byte[] body;
         }
+
 	}   
 }

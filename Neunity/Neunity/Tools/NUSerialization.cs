@@ -89,7 +89,7 @@ namespace Neunity.Tools
 
             BigInteger rem = (body.Length) % 255;
 
-            byte[] r = Op.Void;
+            byte[] r = Op.Void();
 
             for (int i = 0; i < body.Length / 255; i++)
             {
@@ -125,7 +125,7 @@ namespace Neunity.Tools
         {
             if (start >= data.Length)
             {
-                return Op.Void;
+                return Op.Void();
             }
             else
             {
@@ -139,7 +139,7 @@ namespace Neunity.Tools
                 segLen += data[i + start];
                 if (segLen == 0)
                 {
-                    return Op.Void;
+                    return Op.Void();
                 }
                 else
                 {
@@ -164,7 +164,7 @@ namespace Neunity.Tools
                 preStart += SegLenOfFirstSegFromData(data, preStart);
                 if (preStart > data.Length)
                 {
-                    return Op.Void;
+                    return Op.Void();
                 }
                 ++i;
             }
