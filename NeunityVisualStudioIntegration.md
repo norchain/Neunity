@@ -8,8 +8,9 @@ Neunity is a framework providing the toolset and workflow to increase the develo
 
 We'll demostrate an Unity project example. But you'll find it's also available for other C# Dapps.
 
-1. Download Neunity project from [HERE](https://github.com/norchain/Neunity) and unzip it. 
-2. Open Neunity.sln, 
+1. Download Neunity project from [HERE](https://github.com/norchain/Neunity) and unzip it to `<my_path>`. 
+2. (Optional) Go to `<my_path>/Neunity/` Open `Neunity.sln`, run the test cases. They should all pass.
+3. () Go to `<my_path>/Samples/SampleUnity
 
 
 
