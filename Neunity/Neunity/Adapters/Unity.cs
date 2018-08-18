@@ -12,7 +12,7 @@ namespace Neunity.Adapters.Unity
     public static class Op
     {
 
-        public static byte[] Void = new byte[0];
+        public static byte[] Void() => new byte[0];
 
         public static BigInteger Bytes2BigInt(byte[] data) => new BigInteger(data);
 

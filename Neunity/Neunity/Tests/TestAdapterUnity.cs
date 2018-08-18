@@ -92,7 +92,7 @@ namespace Neunity.Test
             //----- String -------
             String str = Op.Bytes2String(nullBA);
             Assert.AreEqual(str, "");
-            Assert.AreEqual(Op.String2Bytes(str), Op.Void);
+            Assert.AreEqual(Op.String2Bytes(str), Op.Void());
 
 
 

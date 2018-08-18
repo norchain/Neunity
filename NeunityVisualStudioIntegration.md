@@ -2,6 +2,17 @@
 
 Neunity is a framework providing the toolset and workflow to increase the development effiency for NEO Smart Contracts (SC) and C# Dapps. In this article, we'll introduce how to use Visual Studio to debug NEO SC(C#).
 
+
+
+## Sample Process
+
+We'll demostrate an Unity project example. But you'll find it's also available for other C# Dapps.
+
+1. Download Neunity project from [HERE](https://github.com/norchain/Neunity) and unzip it. 
+2. Open Neunity.sln, 
+
+
+
 ## The Purpose
 
 One of the most outstanding challenge of developing NEO Dapps/SC is on the blockchain interaction. To test/debug the SC we have to face the following challenges, comparing with the conventional app development:
