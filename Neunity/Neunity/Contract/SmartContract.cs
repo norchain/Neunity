@@ -15,8 +15,12 @@ namespace Neunity.App
 {
     public class Contract:SmartContract
     {
-        public static object Main(string operation, params object[] args) {
-            return NuTP.RespDataSuccess();
+        public static object Main(string operation, params object[] args)
+        {
+            BigInteger a = (BigInteger)args[0];
+            BigInteger b = (BigInteger)args[1];
+
+            return NuTP.RespDataSucWithBody(Op.BigInt2Bytes(a + b));
         }
     }
 }

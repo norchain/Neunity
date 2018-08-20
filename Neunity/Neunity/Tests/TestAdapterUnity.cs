@@ -3,6 +3,7 @@ using NUnit.Framework;
 
 using Neunity.Adapters.Unity;
 using System.Numerics;
+using Neunity.Tools;
 
 namespace Neunity.Test
 {
@@ -117,6 +118,7 @@ namespace Neunity.Test
 
             Assert.AreNotEqual(bi1, bi2);
         }
-        
+
+
     }
 }
