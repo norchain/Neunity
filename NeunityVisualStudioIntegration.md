@@ -1,6 +1,6 @@
 # Debuging/CodeSharing NEO SC by Neunity
 
-Neunity is a framework providing the toolset and workflow to increase the development effiency for NEO Smart Contracts (SC) and C# Dapps. In this article, we'll introduce how to use Visual Studio to debug NEO SC(C#).
+Neunity is a framework providing the toolset and workflow to increase the development effiency for NEO Smart Contracts (SC) and C# Dapps. In this article, we'll introduce how to use Visual Studio to debug NEO SC(C#). Here's the [VIDEO Tutorial](https://youtu.be/vTkNzx403p8)
 
 
 
