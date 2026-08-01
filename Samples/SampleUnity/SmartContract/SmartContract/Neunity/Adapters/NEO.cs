@@ -87,9 +87,12 @@ namespace Neunity.Adapters.NEO
             
         }
 
-        //public static byte[] RandomSeed(){
-        //    Blockchain.GetTransaction()
-        //}
+        public static byte[] RandomSeed(){
+            byte[] hash = ((Transaction)ExecutionEngine.ScriptContainer).Hash;
+
+            //return Blockchain.GetHeader(Blockchain.GetHeight()).Hash;
+            //Blockchain.GetTransaction()
+        }
     }
 
 }
